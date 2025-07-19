@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://yourdomain/IbPlayerPro" version="1.0.1" viewmodes="maximized">
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://yourdomain/IPTVSmartLivePlayer" version="1.0.1" viewmodes="maximized">
     <access origin="*" subdomains="true"></access>
-    <tizen:application id="VKN9cwKmrg.IbPlayerPro" package="VKN9cwKmrg" required_version="2.3"/>
+    <tizen:application id="AKN9cwKmri.IPTVSmartLivePlayer" package="AKN9cwKmri" required_version="2.3"/>
     <content src="index.html"/>
     <feature name="http://tizen.org/feature/screen.size.normal.1080.1920"/>
     <icon src="logo.png"/>
     <tizen:metadata key="http://samsung.com/tv/metadata/use.voiceguide" value="false"/>
-    <name>Ib Player Pro</name>
+    <name>IPTV Smart Live Player</name>
     <tizen:privilege name="http://developer.samsung.com/privilege/network.public"/>
     <tizen:privilege name="http://tizen.org/privilege/internet"/>
     <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
