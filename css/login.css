@@ -1,0 +1,78 @@
+#loading-page {
+	position: relative;
+	background: url(../images/background.jpg);
+	background-size: 100% 100%;
+}
+
+#loading-page .loader-container {
+	position: fixed;
+	z-index: 10;
+	left: 50%;
+	top: 45%;
+	transform: translate(-50%, -50%);
+	transition: 0.5s;
+	width: 580px;
+	height: 400px;
+}
+
+.loader-container.logo {
+	width: 400px;
+	margin-bottom: -30px;
+}
+
+.loader-container.pre-loader {
+	width: 25%;
+	margin-bottom: -30px;
+}
+
+#login-container {
+	position: relative;
+	background: url(../images/background.jpg);
+	background-size: 100% 100%;
+	color: #fff;
+}
+
+.login-txt {
+	padding: 10px 0;
+}
+
+.login-button {
+	margin: 0 10px;
+	width: 200px;
+	background-color: #4a73dc;
+	color: #fff;
+	font-size: 22px;
+	padding: 10px 0;
+	position: relative;
+	border-radius: 30px;
+	display: inline-block;
+	border: 2px solid #4a73dc;
+}
+
+.login-button.active {
+	border: 2px solid yellow;
+}
+
+.login-button:focus {
+	border: 2px solid yellow;
+	color: yellow;
+}
+
+.login-button-wrapper {
+	margin-top: 50px;
+}
+
+.login-page-container {
+	font-size: 36px;
+	padding: 267px 50px;
+}
+
+.mac-address-devicekey {
+	padding: 30px;
+	text-align: left;
+}
+
+.mac-address,
+.device-key {
+	color: yellow;
+}

@@ -1,0 +1,1485 @@
+@media screen and (max-width: 1281px) {
+	html,
+	body {
+		font-size: 22px;
+	}
+
+	.logo-img {
+		width: 200px;
+		height: 130px;
+		margin-top: 30px;
+	}
+
+	.header-txt {
+		font-size: 26px;
+		text-align: right;
+		right: 0;
+		margin-top: 70px;
+		margin-right: 80px;
+	}
+	.bottom-txt {
+		font-size: 26px;
+		text-align: right;
+		right: 0;
+		margin-top: 40px;
+		margin-right: 16px;
+	}
+
+	.wrapTile {
+		height: 60px;
+	}
+
+	.settingTile {
+		margin-bottom: 21px;
+		position: relative;
+		border: solid 2px rgba(255, 0, 0, 0.25);
+		padding: 20px 30px 0px 30px;
+		border-radius: 10px;
+	}
+
+	.wrapTile img {
+		float: left;
+		width: 40px;
+	}
+
+	.wrapTile p {
+		font-size: 26px;
+		font-weight: 700;
+		float: left;
+		padding-left: 30px;
+		padding-top: 0px;
+	}
+
+	.reloadPortalTile {
+		margin-bottom: 21px;
+		position: relative;
+		border: solid 2px rgba(255, 0, 0, 0.25);
+		padding: 20px 30px 0px 30px;
+		border-radius: 10px;
+	}
+
+	.exitTile {
+		margin-bottom: 20px;
+		position: relative;
+		border: solid 2px rgba(255, 0, 0, 0.25);
+		padding: 19px 30px 0px 30px;
+		border-radius: 16px;
+	}
+
+	.wrapLeft {
+		padding: 24px 0px;
+		font-size: 32px;
+		text-align: center;
+	}
+
+	.wrapLeft p {
+		margin: 2px 0px 0px 0px;
+		font-size: 20px;
+		text-align: center;
+		white-space: initial;
+	}
+
+	.wrapCenter p {
+		margin: 15px 0px 0px 0px;
+		font-size: 32px;
+		text-align: center;
+	}
+
+	.wrapCenter img {
+		width: 100px;
+	}
+
+	.top-bar {
+		width: 100%;
+		padding: 10px 5px;
+	}
+
+	.channel-page-category-item,
+	.channel-menu-item {
+		border: solid 1px #0a052b;
+		padding: 10px 10px;
+		font-size: 20px;
+		width: 100%;
+		margin-bottom: 2px;
+	}
+
+	#channel-page .channel-information-container {
+		padding: 10px;
+	}
+
+	#channel-page-bottom-container {
+		position: fixed;
+	}
+
+	.live-catchup-button-list {
+		font-size: 14px;
+		border-radius: 5px;
+		padding: 6px 18px;
+		margin-right: 10px;
+		border: solid 1px #67518c;
+	}
+
+	.search-icon img {
+		width: 20px;
+	}
+
+	.vod-series-category-item {
+		padding: 6px 10px;
+		font-size: 20px;
+	}
+
+	.movie-series-icon img {
+		width: 80px;
+	}
+
+	#vod-series-search-value {
+		font-size: 20px;
+	}
+
+	#sort-button-container {
+		padding: 0px 10px;
+	}
+
+	#sort-button-icon img {
+		width: 20px;
+	}
+
+	.vod-series-menu-item-title-wrapper {
+		font-size: 13px;
+		color: #fff;
+		height: 50px;
+		position: relative;
+	}
+
+	.vod-series-menu-item-container img {
+		object-fit: fill;
+		width: 100%;
+		height: 160px;
+	}
+
+	#sort-modal-wrapper {
+		left: 353px;
+		top: 117px;
+		font-size: 20px;
+		border-radius: 5px;
+		border: solid 1px yellow;
+		width: 200px;
+	}
+
+	#vod-summary-image-wrapper img,
+	#series-summary-image-wrapper img {
+		left: 85px;
+		width: 210px;
+	}
+
+	#series-watch-movie-button {
+		margin-left: 420px;
+	}
+
+	#series-watch-movie-button {
+		margin-left: 420px;
+	}
+
+	#vod-summary-name,
+	#series-summary-name {
+		font-size: 22px;
+		font-weight: 700;
+		margin-top: 10px;
+		margin-bottom: 0px;
+	}
+
+	#selected-season-name {
+		font-size: 20px;
+	}
+
+	.vod-summary-information-container {
+		height: 230px;
+	}
+
+	.setting-menu-item-container {
+		height: 140px;
+		padding: 6px;
+	}
+
+	.setting-menu-item-text {
+		font-size: 20px;
+	}
+
+	.setting-menu-item-icon-container img {
+		width: 40px;
+	}
+
+	.setting-mac-address {
+		font-size: 24px;
+		margin-top: 0px;
+	}
+
+	#delete-cache-modal-desc {
+		font-size: 20px !important;
+	}
+
+	.playlist-icon-wrapper {
+		font-size: 20px;
+	}
+
+	.playlist-state {
+		font-size: 14px;
+		width: 100px;
+	}
+
+	.playlist-name {
+		font-size: 20px;
+	}
+
+	#playlist-page .right-container {
+		font-size: 20px;
+	}
+
+	#qr-code-container img {
+		width: 180px;
+		height: 180px;
+	}
+
+	.loader-container .logo {
+		width: 85%;
+		height: 255px;
+	}
+
+	#loading-page .loader-container {
+		top: 50%;
+	}
+
+	.pre-loader {
+		width: 15%;
+	}
+
+	.hide-category-checkbox + label {
+		font-size: 20px;
+		margin-bottom: 0 !important;
+	}
+
+	.hide-category-checkbox + label:before {
+		top: 3px;
+		right: 0px;
+		width: 26px;
+		height: 27px;
+		border: 1px solid #ddd;
+	}
+
+	.login-page-container {
+		padding-top: 0px;
+		font-size: 26px;
+		text-align: center;
+		padding: 150px 50px 5px 50px;
+	}
+
+	.login-button {
+		margin: 0 auto;
+		width: 130px;
+		font-size: 16px;
+		padding: 4px 0;
+		border-radius: 20px;
+		border: 1px solid #4a73dc;
+	}
+
+	#login-qr-code img {
+		width: 250px;
+		height: 250px;
+	}
+
+	.moviesTile {
+		height: 140px;
+	}
+
+	.seriesTile {
+		height: 140px;
+	}
+
+	.accountTile {
+		height: 140px;
+	}
+
+	.changeServerTile {
+		height: 140px;
+	}
+
+	#sort-button {
+		font-size: 20px;
+	}
+
+	#sort-button-container.active {
+		border: solid 1px yellow;
+		border-radius: 2px;
+		padding: 0px 10px;
+	}
+
+	#vod-watch-movie-button {
+		margin-left: 360px;
+	}
+
+	#vod-watch-movie-button {
+		margin-left: 360px;
+	}
+
+	.series-action-btn,
+	.vod-action-btn {
+		font-size: 24px;
+		font-weight: 700;
+	}
+
+	#vod-summary-action-container,
+	#series-summary-action-container {
+		margin-top: 200px;
+		height: 62px;
+		padding: 10px;
+	}
+
+	.vod-series-action-btn {
+		font-size: 25px;
+		border-radius: 50px;
+		padding: 6px 26px;
+		margin-right: 10px;
+	}
+
+	#vod-summary-description,
+	#series-summary-description {
+		margin-top: 8px;
+		font-size: 18px;
+		line-height: 30px;
+	}
+
+	.vod-summary-item-label {
+		margin-right: 15px;
+		width: 120px;
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	.vod-cast-content {
+		font-size: 18px;
+	}
+
+	.vod-summary-item {
+		margin-bottom: 0;
+		font-size: 18px;
+		white-space: nowrap;
+	}
+
+	.vod-summary-item-text {
+		font-size: 20px;
+	}
+
+	.vod-genre-text-content {
+		font-size: 20px;
+	}
+
+	.vod-genre-text-year {
+		font-size: 20px;
+	}
+
+	.rating {
+		color: #888888;
+		font-size: 24px;
+		height: 27px;
+		width: auto;
+		margin: 0;
+		padding: 0;
+	}
+
+	.rating-mark {
+		margin-left: 10px;
+		color: #fff;
+		font-size: 22px;
+		font-weight: bold;
+	}
+
+	.series-action-btn,
+	.vod-action-btn {
+		font-size: 20px;
+		font-weight: 700;
+	}
+
+	#vod-watch-trailer-button i img {
+		width: 22px;
+	}
+
+	#vod-watch-movie-button img {
+		width: 22px;
+	}
+
+	#vod-add-favorite-button div i img {
+		width: 22px;
+	}
+
+	.full-screen-category-name {
+		font-size: 16px;
+	}
+
+	.full-screen-channel-name {
+		font-size: 20px;
+	}
+
+	.full-screen-program-names-wrapper,
+	.full-screen-programme-times-wrapper {
+		font-size: 20px;
+	}
+
+	.full-screen-channel-logo {
+		max-height: 90px;
+		max-width: 90px;
+	}
+
+	.video-resolution {
+		font-size: 12px;
+	}
+
+	#live-channel-controls-wrapper .control-level-1 {
+		font-size: 18px;
+	}
+
+	.live-video-control-icon p {
+		margin-bottom: 0;
+		font-size: 24px;
+	}
+
+	#entire-vod-series-search-input {
+		font-size: 20px;
+	}
+
+	#live-entire-search .title {
+		font-size: 18px;
+		margin-top: 6px;
+	}
+
+	.live-movie-item {
+		width: 200px;
+		height: 164px;
+		text-align: center;
+	}
+
+	.movie-item-wrapper img {
+		width: 130px;
+		height: 160px;
+		border-radius: solid 2px #5c3435;
+	}
+
+	#movie-entire-search .title {
+		font-size: 18px;
+		margin-top: 2px;
+	}
+
+	.entire-movie-item-wrapper,
+	.entire-series-item-wrapper {
+		width: 130px;
+		height: 160px;
+	}
+
+	.movie-thumbernail-title {
+		font-size: 14px;
+	}
+
+	#series-entire-search .title {
+		font-size: 18px;
+		margin-top: 2px;
+	}
+
+	.program-date-wrapper {
+		font-size: 22px;
+	}
+
+	.catchup-page-right-part {
+		font-size: 20px;
+	}
+
+	#catchup-page-title {
+		font-size: 28px;
+		padding: 30px;
+		height: 100px;
+	}
+
+	#channel-name {
+		display: inline-block;
+		font-size: 25px;
+		margin-left: 6px;
+	}
+
+	#channel-image-container img {
+		width: 60px;
+	}
+
+	.program-date-wrapper-date {
+		font-size: 18px;
+	}
+
+	.next-program-item {
+		font-size: 20px;
+		color: #eee;
+		white-space: nowrap;
+	}
+
+	#channel-title {
+		font-size: 23px;
+		color: #fff;
+	}
+
+	#catchup-page-right-part {
+		width: 74.5%;
+		height: 100vh;
+		padding: 20px 80px;
+		font-size: 20px;
+	}
+
+	.catchup-click-img {
+		width: 18px;
+		margin-right: 4px;
+	}
+
+	.setting-menu-item-icon-container {
+		font-size: 40px;
+		color: #fff;
+		text-align: center;
+		margin: 10px 0;
+	}
+
+	.channel-page-category-item:hover,
+	.channel-page-category-item.active,
+	.channel-menu-item:hover,
+	.channel-menu-item.active {
+		border: solid 1px yellow;
+		width: 100%;
+	}
+
+	.vod-series-category-item {
+		padding: 10px 16px;
+		font-size: 20px;
+		width: 100%;
+		margin-bottom: 2px;
+		border: solid 1px #030208;
+	}
+
+	.vod-series-category-item:hover,
+	.vod-series-category-item.active {
+		border: solid 1px yellow;
+	}
+
+	#vod-series-search-back-button-wrapper {
+		width: 100%;
+		padding: 6px;
+		margin-bottom: 4px;
+		margin-top: 4px;
+	}
+
+	#channel-back-button-text {
+		font-size: 20px;
+	}
+
+	#search-btn-text {
+		padding: 0;
+		font-size: 22px;
+		margin-left: 10px;
+		align-items: center;
+		justify-content: end;
+	}
+
+	#search-btn-text {
+		font-size: 20px;
+	}
+
+	#vod-series-menus-container {
+		position: relative;
+		height: 590px;
+		overflow-y: scroll;
+	}
+
+	.login-txt {
+		padding: 4px 0;
+	}
+
+	#login-qr-code {
+		padding: 175px 0;
+		text-align: center;
+		font-size: 22px;
+	}
+
+	.top-bar-logo img {
+		height: 40px;
+		width: 80px;
+		margin-top: 0px;
+	}
+
+	.wrapLeft img {
+		height: 50px;
+	}
+
+	.vod-series-menu-item-container {
+		width: 20%;
+		padding: 4px;
+	}
+
+	#vod-series-page {
+		border-top: solid 1px #858698;
+	}
+
+	#vod-series-left-part {
+		width: 26%;
+		border-right: solid 1px #858698;
+		padding: 0 2px;
+	}
+
+	#all-vod-counter,
+	#all-series-counter {
+		font-size: 20px;
+		padding-right: 60px;
+	}
+
+	.search-button {
+		border: solid 1px transparent;
+		padding: 4px 10px;
+	}
+
+	#sort-button-container {
+		border: solid 1px transparent;
+		padding: 0px 10px;
+	}
+
+	.search-button.active {
+		border: solid 1px yellow;
+		padding: 4px 10px;
+	}
+
+	#search-icon {
+		width: 20px;
+		margin-top: -6px;
+	}
+
+	.back-button {
+		border: solid 1px transparent;
+		padding: 4px 10px;
+	}
+
+	.back-button.active {
+		border: solid 1px yellow;
+		padding: 4px 10px;
+	}
+
+	#back_icon {
+		width: 20px;
+		margin-top: -10px;
+	}
+
+	.live-tile.active {
+		border: solid 2px white;
+		border-radius: 12px;
+	}
+
+	.live-tile {
+		border: 2px solid transparent;
+		border-radius: 12px;
+		padding: 17% 0%;
+	}
+
+	.moviesTile.active {
+		border: solid 2px white;
+		border-radius: 8px;
+	}
+
+	.moviesTile {
+		border: 2px solid transparent;
+		border-radius: 8px;
+	}
+
+	.seriesTile {
+		border: 2px solid transparent;
+		border-radius: 8px;
+	}
+
+	.seriesTile.active {
+		border: solid 2px white;
+		border-radius: 8px;
+	}
+
+	.accountTile.active {
+		border: solid 2px white;
+		border-radius: 8px;
+	}
+
+	.accountTile {
+		border: 2px solid transparent;
+		border-radius: 8px;
+	}
+
+	.changeServerTile {
+		border: 2px solid transparent;
+		border-radius: 8px;
+	}
+
+	.changeServerTile.active {
+		border: solid 2px white;
+		border-radius: 8px;
+	}
+
+	.settingTile.active {
+		border: solid 2px white;
+		border-radius: 10px;
+	}
+
+	.reloadPortalTile.active {
+		border: solid 2px white;
+		border-radius: 10px;
+	}
+
+	.exitTile.active {
+		border: solid 2px white;
+		border-radius: 10px;
+	}
+
+	.page-logo {
+		width: 120px;
+		height: 70px;
+	}
+
+	.setting-menu-item-wrapper {
+		border: 1px solid transparent;
+	}
+
+	.modal-title-text-2 {
+		font-size: 26px;
+	}
+
+	.modal-operation-menu-type-3 {
+		font-size: 20px;
+	}
+
+	.modal-header-bg-img-1 {
+		padding: 6px;
+	}
+
+	#select-language-body {
+		max-height: 410px;
+		padding: 10px 10px;
+	}
+
+	.hide-category-modal-option.active {
+		border: 1px solid yellow;
+	}
+
+	.hide-category-modal-option {
+		border: 1px solid #33253c;
+	}
+
+	.hide-category-modal-option.active
+		.hide-category-checkbox:checked
+		+ label:before {
+		border: 1px solid #ddd;
+	}
+
+	.hide-category-modal-option.active .hide-category-checkbox + label:before {
+		border: 1px solid #ddd;
+	}
+
+	.hide-category-checkbox + label:after {
+		top: 8px;
+		right: 7px;
+		width: 10px;
+		height: 14px;
+	}
+
+	.modal-operation-menu-type-3.active {
+		color: #fff;
+		border: 1px solid yellow;
+	}
+
+	.modal-operation-menu-type-3 {
+		padding: 8px 10px;
+		border: 1px solid #33253c;
+	}
+
+	.hide-category-modal-option {
+		padding: 8px 20px;
+		border: 1px solid #33253c;
+	}
+
+	#series-summary-episode-items-container-wrapper {
+		padding: 25px;
+	}
+
+	.episode-item-wrapper {
+		font-size: 20px;
+		margin-bottom: 10px;
+		height: 129px;
+		border: solid 1px transparent;
+	}
+
+	.episode-image-wrapper img {
+		width: 250px;
+		height: 100%;
+	}
+
+	#vod-series-video-time-container {
+		margin-top: 8px;
+	}
+
+	#vod-series-player-page .video-time {
+		font-size: 14px;
+		padding: 0 18px;
+	}
+
+	#vod-series-progress-controls-container {
+		padding: 10px 0px 4px 0px;
+	}
+
+	#vod-series-video-controls-wrapper {
+		margin: 10px auto !important;
+		margin-bottom: 0;
+	}
+
+	.video-control-icon-img-container img {
+		width: 20px;
+		margin-left: 0;
+	}
+
+	.video-control-icon i.active {
+		width: 50px;
+		height: 50px;
+		padding: 0px 0px;
+	}
+
+	.clear-history-series-modal-option {
+		padding: 8px 12px;
+		border-radius: 5px;
+		color: #fff;
+		border: 1px solid #33253c;
+		margin-bottom: 2px;
+	}
+
+	.clear-history-series-modal-option.active
+		.hide-category-checkbox
+		+ label:before {
+		border: 1px solid #ddd;
+	}
+
+	.clear-history-series-modal-button-container button {
+		min-width: 150px;
+		margin-bottom: 10px;
+	}
+
+	.clear-history-series-modal-button {
+		margin-top: 10px;
+	}
+
+	.modal-btn-1 {
+		padding: 5px 20px !important;
+		font-size: 20px;
+	}
+
+	.modal-dialog.modal-xl {
+		min-width: 700px;
+	}
+
+	#vod-series-video-progressbar-container {
+		height: 6px;
+	}
+
+	#stop-playback-txt {
+		font-size: 26px !important;
+	}
+
+	#stop-playback-desc {
+		font-size: 22px !important;
+	}
+
+	.modal-dialog.modal-lg {
+		min-width: 600px;
+	}
+
+	#stop-playback-cancel {
+		width: 150px;
+		margin-left: 20px;
+		margin-right: 100px;
+	}
+
+	#vod-series-video-title {
+		padding: 20px;
+		font-size: 20px;
+	}
+
+	#stop-playback-btn {
+		width: 150px;
+	}
+
+	.modal-btn-1 {
+		font-size: 20px !important;
+	}
+
+	#stop-playback-container {
+		margin-top: 30px;
+	}
+
+	#stop-playback-modal-container {
+		padding-top: 0px;
+	}
+
+	.clear-history-movies-modal-option.active {
+		border: 1px solid yellow;
+	}
+
+	.clear-history-movies-modal-option {
+		border: 1px solid #504358;
+		padding: 8px 20px;
+	}
+
+	.clear-history-movies-modal-option.active
+		.hide-category-checkbox
+		+ label:before {
+		border: 1px solid #ddd;
+	}
+
+	.user-account-item-wrapper {
+		font-size: 22px;
+	}
+
+	.modal-body.p-20 {
+		padding: 10px 20px;
+	}
+
+	#exit-modal-title {
+		font-size: 20px !important;
+	}
+
+	#exit-modal-desc,
+	#network-modal-desc {
+		color: #fff;
+		font-size: 22px !important;
+		margin: 10px 0;
+	}
+
+	#exit-modal-btn-container {
+		margin-top: 30px;
+	}
+
+	#exit-modal-cancel {
+		width: 140px;
+		margin-left: 10px;
+		margin-right: 130px;
+	}
+
+	#exit-modal-btn {
+		width: 140px;
+	}
+
+	#reload-modal-cancel {
+		width: 140px;
+		margin-left: 10px;
+	}
+
+	#reload-modal-btn {
+		width: 140px;
+	}
+
+	.login-button.active {
+		border: 1px solid yellow;
+	}
+
+	.resume-progress-bar {
+		height: 7px;
+	}
+
+	.season-item-container {
+		font-size: 20px;
+		padding: 10px 0px 10px 60px;
+		margin-right: 5px;
+		margin-bottom: 0px;
+	}
+
+	.episode-item-wrapper.active {
+		border: solid 1px yellow;
+	}
+
+	#episode-img-1 {
+		height: 126px;
+		vertical-align: inherit;
+	}
+
+	#episode-img-2 {
+		height: 150px;
+		vertical-align: inherit;
+	}
+
+	#vod-summary-image-wrapper img {
+		left: 10%;
+		height: 300px;
+		border-radius: 6px;
+	}
+
+	.time-format-modal-option.active,
+	.livestream-format-modal-option.active {
+		border: 1px solid yellow;
+	}
+
+	.time-format-modal-option,
+	.livestream-format-modal-option {
+		border: 1px solid #33253c;
+	}
+
+	.user-account-modal-header {
+		padding: 4px;
+	}
+
+	#series-summary-image-wrapper img {
+		height: 300px;
+	}
+
+	#series-favorite-icon {
+		margin-bottom: 4px;
+		width: 24px;
+	}
+
+	#youtube-icon {
+		margin-bottom: 4px;
+		width: 24px;
+	}
+
+	#player-icon {
+		margin-bottom: 4px;
+		width: 24px;
+	}
+
+	#vod-favorite-icon {
+		margin-bottom: 4px;
+		width: 24px;
+	}
+
+	#vod-youtube-icon {
+		margin-bottom: 4px;
+		width: 24px;
+	}
+
+	#vod-player-icon {
+		margin-bottom: 4px;
+		width: 24px;
+	}
+
+	.favorite-badge i img {
+		width: 24px;
+		height: 24px;
+		background: none;
+	}
+
+	.favorite-badge {
+		left: 6px;
+		top: 0px;
+		font-size: 20px;
+	}
+
+	#channel-page .channel-icon {
+		width: 20px;
+		margin-right: 6px;
+	}
+
+	#channel-page .channel-number {
+		text-align: center;
+		display: inline-block;
+		margin-right: 6px;
+	}
+
+	.live-catchup-button-list.active {
+		border: solid 1px yellow;
+	}
+
+	.favorite-icon {
+		width: 24px;
+	}
+
+	.program-date {
+		margin-bottom: 0;
+	}
+
+	#channel-page-categories-container,
+	#channel-page-menu-container {
+		border-left: solid 2px #666666;
+		height: 660px;
+	}
+
+	.clear-history-series-modal-option.active {
+		border: 1px solid yellow;
+	}
+
+	.modal-btn-1.active {
+		border: solid 1px yellow;
+	}
+
+	.modal-btn-1 {
+		border: transparent solid 1px;
+	}
+
+	.menu-item {
+		font-size: 20px;
+		border-right: 1px solid #858698;
+	}
+	.playlist-page-activation-txt {
+		margin-top: 30px;
+	}
+
+	.loading-mac-devicekey {
+		padding: 15px;
+		font-size: 20px;
+	}
+
+	.text-tracks-setting-modal-option-fontsize-wrapper {
+		padding-left: 27px;
+	}
+	.text-tracks-setting-modal-option-wrapper {
+		padding-left: 176px;
+	}
+	.increase-fontsize-btn {
+		height: 60px;
+		width: 60px;
+	}
+	.increase-fontsize-item {
+		height: 60px;
+		width: 80px;
+	}
+	.text-tracks-setting-modal-option-color {
+		background: green;
+		height: 60px;
+		width: 60px;
+		border-radius: 4px;
+	}
+	.text-tracks-setting-modal-option-bk {
+		background: red;
+		height: 60px;
+		width: 60px;
+		border-radius: 4px;
+	}
+	.text-tracks-color-wrapper {
+		width: 50%;
+		font-size: 22px;
+	}
+	.increase-fontsize-btn img {
+		margin-top: 20px;
+		width: 20px;
+	}
+
+	.text-tracks-example-text {
+		padding: 50px 70px 0px 50px;
+	}
+
+	.text-tracks-color-item .color-0 {
+		height: 70px;
+		width: 70px;
+	}
+
+	.text-tracks-color-item .color-1 {
+		height: 70px;
+		width: 70px;
+	}
+
+	.text-tracks-color-item .color-2 {
+		height: 70px;
+		width: 70px;
+	}
+
+	.text-tracks-color-item .color-3 {
+		height: 70px;
+		width: 70px;
+	}
+
+	.text-tracks-color-item .color-4 {
+		height: 70px;
+		width: 70px;
+	}
+
+	.text-tracks-color-item .color-5 {
+		height: 70px;
+		width: 70px;
+	}
+
+	.text-tracks-color-item .color-6 {
+		height: 70px;
+		width: 70px;
+	}
+
+	.text-tracks-color-item .color-7 {
+		height: 70px;
+		width: 70px;
+	}
+
+	.text-tracks-color-item .color-12 {
+		height: 70px;
+		width: 70px;
+	}
+
+	.text-tracks-color-item .color-9 {
+		height: 70px;
+		width: 70px;
+	}
+
+	.text-tracks-color-item .color-10 {
+		height: 70px;
+		width: 70px;
+	}
+
+	.text-tracks-color-item .color-11 {
+		height: 70px;
+		width: 70px;
+	}
+
+	.text-tracks-color-item .color-8 {
+		height: 70px;
+		width: 70px;
+	}
+
+	.text-tracks-color-item .color-13 {
+		height: 70px;
+		width: 70px;
+	}
+
+	.text-tracks-background-item .background-item {
+		height: 70px;
+		width: 70px;
+		border-radius: 4px;
+	}
+
+	.setting-title-bar {
+		text-align: left;
+		padding: 10px 0;
+	}
+
+	.load-container {
+		width: 200px;
+		position: fixed;
+		left: 55%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	.load-container img {
+		width: 100px;
+	}
+
+	.header .logo img {
+		margin-top: 30px;
+		width: 250px;
+	}
+
+	.movies-tile {
+		height: 165px;
+		padding: 35px 0px;
+		border-radius: 12px;
+		border: 2px solid transparent;
+	}
+
+	.movies-tile p {
+		font-size: 18px;
+	}
+
+	.setting-tile {
+		margin-bottom: 10px;
+		padding: 33px 24px 20px 20px;
+		height: 109px;
+		border-radius: 12px;
+		border: solid 2px rgba(255, 0, 0, 0.25);
+	}
+
+	.app-version {
+		font-size: 24px;
+	}
+
+	.search-icon {
+		width: 20px;
+	}
+
+	#vod-series-categories-container {
+		height: 480px;
+	}
+
+	.vod-top-bar {
+		margin-top: 15px;
+	}
+
+	.element-7 {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	.element-6 {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	.element-5 {
+		padding-right: 0px;
+	}
+
+	.element-4 {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	.setting-tile.active {
+		border: solid 2px white;
+		border-radius: 12px;
+	}
+
+	.movies-tile.active {
+		border: solid 2px white;
+		border-radius: 12px;
+	}
+
+	.setting-tile img {
+		width: 40px;
+	}
+	.movies-tile img {
+		height: 54px;
+	}
+
+	.setting-tile p {
+		padding-left: 15px;
+		padding-top: 5px;
+		font-size: 24px;
+	}
+
+	.live-tile img {
+		width: 140px;
+	}
+
+	.rangeslider--horizontal {
+		height: 6px;
+	}
+	.rangeslider__handle {
+		width: 20px;
+		height: 20px;
+	}
+
+	.rangeslider--horizontal .rangeslider__handle {
+		top: -7px;
+	}
+
+	.video-info-icon img {
+		height: 22px;
+		margin-bottom: 10px;
+	}
+
+	.video-info-btn .video-info-icon.active,
+	.video-info-btn .video-info-icon:hover {
+		width: 55px;
+		height: 55px;
+	}
+
+	.resume-action-btn {
+		font-size: 18px;
+		width: 240px !important;
+	}
+
+	#vod-resume-title {
+		font-size: 30px;
+	}
+
+	#series-summary-episode-items-container {
+		height: 88vh;
+	}
+
+	.playlist-item-container {
+		width: 31.9%;
+		height: 125px;
+		margin: 6px;
+	}
+
+	.parent-modal-input-item-container {
+		font-size: 16px;
+	}
+
+	#parent-control-modal .modal-header {
+		padding: 0px;
+	}
+
+	.parent-pin-invalid {
+		margin-top: -25px;
+	}
+
+	#setting-page .page-title {
+		font-size: 28px;
+	}
+
+	.playlist-page .page-title {
+		font-size: 28px;
+	}
+
+	.red-square {
+		width: 30px;
+		height: 20px;
+		background-color: red;
+		border-radius: 6px;
+	}
+
+	.exit-text {
+		font-size: 16px;
+		margin-left: 6px;
+		margin-top: -1px;
+	}
+
+	.qr-code-img {
+		background: white;
+		padding: 6px;
+		border-radius: 4px;
+	}
+
+	.exit-index {
+		padding: 0 380px;
+	}
+
+	#playlist-items-container {
+		min-height: 540px;
+	}
+
+	.cast-item-wrapper img {
+		width: 140px;
+		height: 200px;
+		border-radius: 50%;
+	}
+
+	.magic-radio + label,
+	.magic-checkbox + label {
+		font-size: 26px;
+	}
+
+	#text-tracks-selection-container,
+	#audio-tracks-selection-container,
+	#catchup-audio-tracks-selection-container {
+		max-height: 400px;
+	}
+
+	.modal-operation-menu-type-2,
+	.text-tracks-item,
+	.audio-tracks-item {
+		padding: 10px 20px;
+	}
+
+	#keyboard-channel-number {
+		right: 40px;
+		top: 70px;
+		font-size: 30px;
+	}
+
+	.sort-direction-icon {
+		width: 21px;
+		margin-left: 5px;
+	}
+
+	#name-sort-container {
+		height: 35px;
+		width: 35px;
+	}
+
+	#name-sort-container.active {
+		border: solid 1px yellow;
+	}
+
+	.text-tracks-delay-setting-btn-container .modal-btn-2 {
+		width: 160px;
+	}
+
+	.rating-badge {
+		font-size: 16px;
+	}
+}

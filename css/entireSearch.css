@@ -1,0 +1,13 @@
+#entire-search-bar {
+	color: #fff;
+	margin-left: 100px;
+	border-radius: 30px;
+	border: solid 2px #858698;
+	padding: 0 15px;
+	width: 50%;
+	margin: auto;
+}
+
+#entire-search-bar.active {
+	border: solid 2px yellow;
+}

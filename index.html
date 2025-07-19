@@ -1,0 +1,2180 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2024 LG Electronics Inc.
+
+SPDX-License-Identifier: Apache-2.0
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>ibPlayer Pro</title>
+	<link rel="stylesheet" href="css/libs/bootstrap4.4.1.min.css">
+	<link rel="stylesheet" href="css/libs/magic-check.css">
+	<link rel="stylesheet" href="css/libs/rangeslider.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/guide.css">
+	<link rel="stylesheet" href="css/home.css">
+	<link rel="stylesheet" href="css/player.css">
+	<link rel="stylesheet" href="css/channel.css">
+	<link rel="stylesheet" href="css/login.css">
+	<link rel="stylesheet" href="css/grid.css">
+	<link rel="stylesheet" href="css/catchup.css">
+	<link rel="stylesheet" href="css/rating.css">
+	<link rel="stylesheet" href="css/loader.css">
+	<link rel="stylesheet" href="css/playlist.css">
+	<link rel="stylesheet" href="css/vodseries.css">
+	<link rel="stylesheet" href="css/setting.css">
+	<link rel="stylesheet" href="css/category.css">
+	<link rel="stylesheet" href="css/entireSearch.css">
+	<link rel="stylesheet" href="css/libs/rangeslider.css">
+</head>
+
+<body>
+	<div id="loading-page" class="height-100 text-center">
+		<div class="mac-address-devicekey hide">
+			<div>
+				<span data-word_code="mac_address" class="mac-address-label"> Mac Address </span> :
+				<span class="mac-address px-2"></span>
+			</div>
+			<div>
+				<span data-word_code="device_key" class="device-key-label"> Device Key </span> :
+				<span class="device-key px-2"></span>
+			</div>
+		</div>
+		<div class="loader-container">
+			<img src="images/banner.png" class="logo">
+			<img src="images/loader.gif" class="pre-loader">
+		</div>
+	</div>
+	<div id="catchup-loading-page" class="height-100 text-center hide"
+		style="position: relative; background-size: 100% 100%">
+		<div class="video-loader">
+			<img src="images/loader.gif">
+		</div>
+	</div>
+	<div id="login-container" class="height-100 hide">
+		<div class="row-item">
+			<div class="element-7 text-center login-page-container">
+				<div id="expired-text" class="login-txt">
+					<p class="account_expired hide" data-word_code="account_expired">
+						Your account is expired now.
+					</p>
+				</div>
+				<div id="trial-text" class="login-txt">
+					<p>
+						<span data-word_code="sub_remaining">
+							Your subscription is remaining
+						</span>
+						<span class="remain-days">6</span>
+						<span data-word_code="days">days</span>
+					</p>
+					<p class="no-playlist-desc hide" data-word_code="no_playlist_description">
+						You have not uploaded your playlist yet, you can continue with our
+						demo content or upload your playlist in following website.
+					</p>
+					<p class="add-playlist-text hide" data-word_code="to_add_manage">
+						To add/manage the playlists, use following values on website:
+					</p>
+				</div>
+				<div class="login-txt website-url"></div>
+				<div class="login-txt">
+					<span data-word_code="mac_address">Mac Address:</span>
+					<span class="mac-address"></span>
+				</div>
+				<div class="login-txt">
+					<span data-word_code="device_key">Device Key:</span>
+					<span class="device-key"></span>
+				</div>
+				<div class="login-button-wrapper">
+					<button class="login-button active" onclick="login.login()" onmouseenter="login.hoverLogin(0)"
+						data-word_code="str_continue">
+						Continue
+					</button>
+					<button class="login-button" onclick="login.cancel()" onmouseenter="login.hoverLogin(1)"
+						data-word_code="cancel">
+						Cancel
+					</button>
+				</div>
+			</div>
+			<div class="element-4">
+				<div id="login-qr-code" class="text-center">
+					<img class="qr-code-img" src="images/qr-code.png">
+					<div data-word_code="scan_code"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal" id="exit-modal" data-backdrop="static">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content modal-bg-cyan" style="border-radius: 10px; padding-top: 20px">
+				<div class="modal-body">
+					<h4 class="modal-text-1 text-center" id="exit-modal-title" data-word_code="exit">
+						Exit
+					</h4>
+					<h5 class="modal-text-1 text-center" id="exit-modal-desc" data-word_code="exit_description">
+						DO YOU WISH TO EXIT APP?
+					</h5>
+					<div class="modal-button-wrapper" id="exit-modal-btn-container">
+						<button type="button" class="btn modal-btn-1 exit-modal-button" id="exit-modal-btn"
+							data-word_code="yes" onmouseenter="exit.hoverMenuItem(0)" onclick="exit.handleMenuClick()">
+							Yes
+						</button>
+						<button type="button" id="exit-modal-cancel" class="btn modal-btn-1 exit-modal-button"
+							data-word_code="no" onmouseenter="exit.hoverMenuItem(1)" onclick="exit.handleMenuClick()">
+							No
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal" id="reload-modal" data-backdrop="static">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content modal-bg-cyan" style="border-radius: 10px; padding-top: 20px">
+				<div class="modal-body">
+					<h4 class="modal-text-1 text-center" id="reload-modal-title" data-word_code="reload_portal">
+						Exit
+					</h4>
+					<h5 class="modal-text-1 text-center" id="reload-modal-desc"
+						data-word_code="would_you_like_to_reload_portal">
+						DO YOU WISH TO EXIT APP?
+					</h5>
+					<div class="modal-button-wrapper" id="reload-modal-btn-container">
+						<button type="button" class="btn modal-btn-1 exit-modal-button" id="reload-modal-btn"
+							data-word_code="yes" onmouseenter="home.hoverReloadModalBtn(0)"
+							onclick="home.reloadConfirm(0)">
+							Yes
+						</button>
+						<button type="button" id="reload-modal-cancel" class="btn modal-btn-1 exit-modal-button"
+							data-word_code="no" onmouseenter="home.hoverReloadModalBtn(1)"
+							onclick="home.reloadConfirm(1)">
+							No
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="app" class="height-100 hide">
+		<div id="home-page" class="text-center height-100">
+			<div class="header">
+				<div class="logo">
+					<img src="images/banner.png">
+				</div>
+				<div class="header-txt">
+					<span class="playlist-expired-text">
+						<span data-word_code="current_expired">
+							Current Playlist Expired :
+						</span>
+						<span class="playlist-expired">Unlimited</span>
+					</span>
+					<span id="expiration_date"></span>
+				</div>
+			</div>
+			<div class="main row-item">
+				<div class="element-4">
+					<div class="live-tile active" index="0" onclick="home.clickMainMenu(0)"
+						onmouseenter="home.hoverMainMenu(0)">
+						<img src="images/tv_icon.png">
+						<p data-word_code="live_tv">LIVE TV</p>
+					</div>
+				</div>
+				<div class="element-4">
+					<div class="row-item">
+						<div class="element-6 pl-0">
+							<div class="movies-tile" index="1" onclick="home.clickMainMenu(1)"
+								onmouseenter="home.hoverMainMenu(1)">
+								<img src="images/movie_icon.png">
+								<p data-word_code="movies">MOVIES</p>
+							</div>
+						</div>
+						<div class="element-6">
+							<div class="movies-tile" index="2" onclick="home.clickMainMenu(2)"
+								onmouseenter="home.hoverMainMenu(2)">
+								<img src="images/series_icon.png">
+								<p data-word_code="series">SERIES</p>
+							</div>
+						</div>
+					</div>
+					<div class="row-item">
+						<div class="element-6 pl-0">
+							<div class="movies-tile" index="3" onclick="home.clickMainMenu(3)"
+								onmouseenter="home.hoverMainMenu(3)">
+								<img src="images/account_icon.png">
+								<p data-word_code="account">Account</p>
+							</div>
+						</div>
+						<div class="element-6">
+							<div class="movies-tile" index="4" onclick="home.clickMainMenu(4)"
+								onmouseenter="home.hoverMainMenu(4)">
+								<img src="images/change_m3u_icon.png">
+								<p data-word_code="change_playlist">Change Server</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="element-4 pl-0">
+					<div class="row-item">
+						<div class="setting-tile" index="5" onclick="home.clickMainMenu(5)"
+							onmouseenter="home.hoverMainMenu(5)">
+							<img src="images/setting.png" class="epgInstall">
+							<p class="custInstall" data-word_code="settings">Setting</p>
+						</div>
+						<div class="setting-tile" index="6" onclick="home.clickMainMenu(6)"
+							onmouseenter="home.hoverMainMenu(6)">
+							<img src="images/reload_icon.png" class="epgInstall">
+							<p class="custInstall" data-word_code="reload_portal">
+								Reload Portal
+							</p>
+						</div>
+						<div class="setting-tile" index="7" onclick="home.clickMainMenu(7)"
+							onmouseenter="home.hoverMainMenu(7)">
+							<img src="images/exit_icon.png" class="epgInstall">
+							<p class="custInstall" data-word_code="exit">Exit</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer">
+				<span class="app-version">v1.2.0</span>
+			</div>
+		</div>
+		<div class="top-bar flex-container hide">
+			<div class="menu-item" onclick="home.clickTopBarMenu(0)" onmouseenter="channel.hoverTopBarMenu(0)"
+				data-word_code="home">
+				Home
+			</div>
+			<div class="menu-item" onclick="home.clickTopBarMenu(1)" onmouseenter="channel.hoverTopBarMenu(1)"
+				data-word_code="live_tv">
+				Live TV
+			</div>
+			<div class="menu-item" onclick="home.clickTopBarMenu(2)" onmouseenter="channel.hoverTopBarMenu(2)"
+				data-word_code="movies">
+				Movies
+			</div>
+			<div class="menu-item" onclick="home.clickTopBarMenu(3)" onmouseenter="channel.hoverTopBarMenu(3)"
+				data-word_code="series">
+				Series
+			</div>
+			<div id="search-by-video-title"></div>
+			<div class="top-bar-logo">
+				<img src="images/banner.png">
+			</div>
+		</div>
+		<div id="channel-page" class="flex-container hide">
+			<div class="left-container flex-container">
+				<div id="channel-page-categories-container"></div>
+				<div class="menus-container position-relative" id="channel-page-menu-container"></div>
+			</div>
+			<div class="right-container">
+				<div class="player-container">
+					<video class="position-absolute" id="channel-page-video" type="application/avplayer"
+						style="width: 100%; height: 100%"></video>
+					<div class="video-error">
+						<img src="images/def_image.jpg">
+					</div>
+					<div class="reconnect-noti">
+						Reconnecting...
+					</div>
+					<div id="keyboard-channel-number"></div>
+					<div id="live-channel-controls-container">
+						<div class="full-screen-contents-wrapper">
+							<div class="full-screen-channel-logo-wrapper">
+								<img class="full-screen-channel-logo"
+									onerror="this.src='images/settings/default_live.png'">
+							</div>
+							<div class="full-screen-programmes-container">
+								<div class="full-screen-category-name"></div>
+								<div class="full-screen-channel-name"></div>
+							</div>
+							<div class="video-resolution">1920 x 1080 px</div>
+						</div>
+						<div class="flex-container">
+							<div class="full-screen-program-names-wrapper">
+								<div class="full-screen-program-time current"></div>
+								<div class="full-screen-program-name current"></div>
+							</div>
+							<div class="full-screen-programme-times-wrapper">
+								<div class="full-screen-program-time next"></div>
+								<div class="full-screen-program-name next"></div>
+							</div>
+						</div>
+						<div id="live-channel-progress-controls-container">
+							<div id="live-channel-progress-container">
+								<div id="live-channel-progressbar-container">
+									<span class="progress-amount" id="live-channel-player-page"></span>
+								</div>
+							</div>
+							<div id="live-channel-controls-wrapper">
+								<div class="control-level-1 row-item">
+									<div class="element-4">
+										<i onmouseenter="channel.hoverVideoControlIcon(1)"
+											onclick="channel.showNextChannel(-1)">
+											<img src="images/arrow-left.png" width="20">
+										</i>
+										<p data-word_code="previous_channel" class="previous-channel">
+											Previous Channel
+										</p>
+									</div>
+									<div class="element-4" style="text-align: center">
+										<i onmouseenter="channel.hoverVideoControlIcon(1)" onclick="channel.showdown()">
+											<img src="images/arrow-down.png" width="20">
+										</i>
+									</div>
+									<div class="element-4" style="text-align: right">
+										<p data-word_code="next_channel" class="next-channel">
+											Next Channel
+										</p>
+										<i onmouseenter="channel.hoverVideoControlIcon(1)"
+											onclick="channel.showNextChannel(-1)">
+											<img src="images/arrow-right.png" width="20">
+										</i>
+									</div>
+								</div>
+								<div class="control-level-2 hide">
+									<div class="live-video-control-icon text-center" onclick="channel.goToCatchUpPage()"
+										onmouseenter="channel.hoverVideoControlIcon(0)">
+										<i>
+											<img src="images/epg.png" width="30">
+										</i>
+										<p data-word_code="epg">Epg</p>
+									</div>
+									<div class="live-video-control-icon text-center"
+										onclick="channel.showAudioTracksModal()"
+										onmouseenter="channel.hoverVideoControlIcon(1)">
+										<i>
+											<img src="images/audio.png" width="30">
+										</i>
+										<p data-word_code="audio_track">Audio Track</p>
+									</div>
+									<div class="live-video-control-icon text-center" onclick="channel.goToMovies()"
+										onmouseenter="channel.hoverVideoControlIcon(2)">
+										<i>
+											<img src="images/video.png" width="30">
+										</i>
+										<p data-word_code="movies">Movies</p>
+										<div class="video-bar"></div>
+									</div>
+									<div class="live-video-control-icon text-center" onclick="channel.goToSeries()"
+										onmouseenter="channel.hoverVideoControlIcon(3)">
+										<i>
+											<img src="images/series.png" width="30">
+										</i>
+										<p data-word_code="series">Series</p>
+										<div class="series-bar"></div>
+									</div>
+									<div class="live-video-control-icon text-center" onclick="channel.addOrRemoveFav()"
+										onmouseenter="channel.hoverVideoControlIcon(4)">
+										<i>
+											<img class="fav-img" src="images/star.png" width="30">
+										</i>
+										<p data-word_code="add_to_favorite" id="live-video-control-fav-icon">
+											Favorite
+										</p>
+										<div class="favorite-bar"></div>
+									</div>
+									<div class="live-video-control-icon text-center"
+										onclick="channel.goToEntireSearch()"
+										onmouseenter="channel.hoverVideoControlIcon(5)">
+										<i>
+											<img src="images/search-white.png" width="30">
+										</i>
+										<p data-word_code="search">Search</p>
+										<div class="search-bar"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="channel-information-container">
+					<p id="channel-title"></p>
+					<div id="next-program-container"></div>
+				</div>
+				<div id="channel-page-bottom-container">
+					<button id="live-catchup-button" class="live-catchup-button-list" data-word_code="catch_up"
+						onclick="channel.goToCatchUpPage()" onmouseenter="channel.hoverGoToCatchUpPage(0)">
+						Catch Up
+					</button>
+					<button id="live-Favorite-button" class="live-catchup-button-list" data-word_code="add_to_favorite"
+						onclick="channel.addOrRemoveFav()" onmouseenter="channel.hoverGoToCatchUpPage(1)">
+						Add to Favorite
+					</button>
+					<button id="live-Search-button" class="live-catchup-button-list" data-word_code="search"
+						onclick="entireSearch.entireSearch('channel-page')"
+						onmouseenter="channel.hoverGoToCatchUpPage(2)">
+						Search
+					</button>
+				</div>
+			</div>
+		</div>
+		<div id="catchup-page" class="height-100 flex-container hide">
+			<div id="catchup-page-left-part">
+				<div id="catchup-page-title" data-word_code="catch_up">Catch up</div>
+				<div id="program-date-container"></div>
+			</div>
+			<div id="catchup-page-right-part">
+				<div id="catchup-page-channel-name">
+					<div id="channel-image-container">
+						<img src="images/series_icon.png">
+					</div>
+					<div id="channel-name" class="text-center">KANAL D</div>
+				</div>
+				<div id="program-menu-container"></div>
+			</div>
+			<div id="catchup" class="hide">
+				<div id="catch-up-player-container" class="catch-up-player-container">
+					<video class="position-absolute" id="catchup-page-video" type="application/avplayer"></video>
+					<div id="catchup-video-title"></div>
+					<div class="video-loader">
+						<img src="images/loader.gif">
+					</div>
+					<div class="video-skin">
+						<div class="video-progress">
+							<span class="progress-amount"></span>
+						</div>
+						<div class="time-info">
+							<span class="current-time">00:00</span>
+							/
+							<span class="total-time">00:00</span>
+						</div>
+					</div>
+					<div class="video-error">
+						<img src="images/def_image.jpg">
+					</div>
+					<div id="catchup-player-controller">
+						<div>
+							<div id="catchup-progress-controls-container">
+								<div id="catchup-progress-container">
+									<div id="catchup-progressbar-container">
+										<span class="progress-amount" id="catchup-player-page"></span>
+									</div>
+									<div id="catchup-time-container" class="flex-container">
+										<span id="catchup-current-time" class="video-time video-current-time text-left">
+											--:--
+										</span>
+										<span id="catchup-duration"
+											class="video-time text-right video-total-time text-right">
+											--:--
+										</span>
+									</div>
+								</div>
+							</div>
+							<div id="catchup-controls-wrapper" class="flex-container">
+								<div class="video-control-icon text-center">
+									<i class="video-control-icon-img-container"
+										onmouseenter="catchup.hoverVideoControlIcon(0)"
+										onclick="catchup.showNextVideo(-1)">
+										<img src="images/media-step-backward.png">
+									</i>
+								</div>
+								<div class="video-control-icon text-center">
+									<i class="video-control-icon-img-container"
+										onmouseenter="catchup.hoverVideoControlIcon(1)" onclick="catchup.seekTo(-30)">
+										<img src="images/fast-backword.png" class="video-control-fast-backword-img">
+									</i>
+								</div>
+								<div class="video-control-icon text-center">
+									<i class="video-control-icon-img-container" data-action_type="pause"
+										onmouseenter="catchup.hoverVideoControlIcon(2)"
+										onclick="catchup.playPauseVideo()">
+										<img src="images/media-pause.png" id="live-media-pause">
+										<img src="images/media-play.png" id="live-media-play" class="hide">
+									</i>
+								</div>
+								<div class="video-control-icon text-center">
+									<i class="video-control-icon-img-container"
+										onmouseenter="catchup.hoverVideoControlIcon(3)" onclick="catchup.seekTo(30)">
+										<img src="images/fast-forward.png" class="video-control-fast-forward-icon">
+									</i>
+								</div>
+								<div class="video-control-icon text-center">
+									<i class="video-control-icon-img-container"
+										onmouseenter="catchup.hoverVideoControlIcon(4)"
+										onclick="catchup.showNextVideo(1)">
+										<img src="images/media-step-forward.png">
+									</i>
+								</div>
+								<div class="video-control-icon text-center">
+									<div class="video-control-icon-img-container"
+										onmouseenter="catchup.hoverVideoControlIcon(6)"
+										onclick="catchup.showAudioTracksModal()">
+										<i class="video-control-icon-img-container">
+											<img src="images/audio.png" width="30">
+										</i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="vod-series-page" class="height-100 flex-container hide">
+			<div id="vod-series-left-part">
+				<div>
+					<div class="movie-series-icon">
+						<img src="images/movie_icon.png" class="movie_series_img">
+					</div>
+					<div id="vod-series-search-back-button-wrapper" class="flex-container">
+						<div id="back-button-wrapper">
+							<div class="back-button search-back-btn" onclick="vodSeries.goBack()"
+								onmouseenter="vodSeries.hoverGoBack(0)">
+								<span>
+									<img src="images/image_back_icon.png" id="back_icon">
+									<span data-word_code="back" id="search-btn-text">Back</span>
+								</span>
+							</div>
+						</div>
+						<div id="search-button-wrapper">
+							<div class="search-button search-back-btn"
+								onclick="vodSeries.goEntireSearch('vod-series-page')"
+								onmouseenter="vodSeries.hoverGoEntireSearch()">
+								<span>
+									<img src="images/search-white.png" id="search-icon">
+									<span data-word_code="search" id="channel-back-button-text">
+										Search
+									</span>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="vod-series-categories-container"></div>
+			</div>
+			<div id="vod-series-right-part-wrapper">
+				<div class="row-item">
+					<div class="vod-top-bar flex-container">
+						<div id="sort-button-container" onclick="vodSeries.showSortKeyModal()"
+							onmouseenter="vodSeries.hoverSortKeyModal()">
+							<span id="sort-button" data-word_code="order_by_added">
+								Order By Added
+							</span>
+							<!-- <span id="sort-button-icon">
+									<img src="images/sorting.png" width="28">
+								</span> -->
+						</div>
+						<div id="name-sort-container" class="flex-container" onclick="vodSeries.nameSort()"
+							onmouseenter="vodSeries.hoverNameSort()">
+							<img src="images/svg/sort_asc.svg" class="sort-direction-icon">
+						</div>
+						<div id="all-vod-counter"></div>
+					</div>
+				</div>
+				<div id="vod-series-right-part">
+					<div id="vod-series-menus-container"></div>
+				</div>
+			</div>
+		</div>
+		<div id="vod-summary-page" class="height-100 position-relative hide">
+			<img class="vod-series-background-img" onerror="this.src='images/background.jpg'">
+			<div class="vod-series-background-img-overlay"></div>
+			<div class="vod-series-summary-page-contents-container">
+				<div id="vod-summary-content-container">
+					<div id="vod-summary-action-container">
+						<div id="vod-summary-image-wrapper">
+							<img onerror="this.src='images/placeholder.png'">
+						</div>
+						<button id="vod-watch-movie-button" class="btn vod-action-btn vod-series-action-btn"
+							onmouseenter="vodSummary.hoverButton(0)" onclick="vodSummary.showMovie()">
+							<img src="images/play.png" id="vod-player-icon">
+							<span data-word_code="play">Watch Movie</span>
+						</button>
+						<button id="vod-watch-trailer-button" class="btn vod-action-btn vod-series-action-btn"
+							onmouseenter="vodSummary.hoverButton(1)" onclick="vodSummary.showTrailerVideo()">
+							<i>
+								<img src="images/youtube_icon.png" id="vod-youtube-icon">
+							</i>
+							<span data-word_code="watch_trailer">Watch Trailer</span>
+						</button>
+						<button id="vod-add-favorite-button" class="btn vod-action-btn vod-series-action-btn"
+							data-action="add" data-type="vod" onmouseenter="vodSummary.hoverButton(2)"
+							onclick="vodSummary.toggleFavorite(this)">
+							<div class="favorite-badge-wrapper">
+								<i>
+									<img src="images/star.png" id="vod-favorite-icon">
+								</i>
+							</div>
+						</button>
+					</div>
+					<div id="vod-summary-page-content" class="row-item">
+						<div class="vod-summary-page-left"></div>
+						<div id="vod-summary-page-right-part" class>
+							<h3 id="vod-summary-name"></h3>
+							<div class="vod-series-rating-container" id="vod-rating-container">
+								<div class="genre-container">
+									<div class="vod-genre-text-year"></div>
+									<div class="vod-genre-text-content"></div>
+								</div>
+								<div class="genre-container">
+									<span class="vod-cast-content"></span>
+								</div>
+								<div class="rating">
+									<div class="rating-upper">
+										<span>
+											<img src="images/5-star.png" class="rating-star">
+										</span>
+										<span>
+											<img src="images/5-star.png" class="rating-star">
+										</span>
+										<span>
+											<img src="images/5-star.png" class="rating-star">
+										</span>
+										<span>
+											<img src="images/5-star.png" class="rating-star">
+										</span>
+										<span>
+											<img src="images/5-star.png" class="rating-star">
+										</span>
+										<span>
+											<img src="images/5-star.png" class="rating-star">
+										</span>
+										<span>
+											<img src="images/5-star.png" class="rating-star">
+										</span>
+										<span>
+											<img src="images/5-star.png" class="rating-star">
+										</span>
+										<span>
+											<img src="images/5-star.png" class="rating-star">
+										</span>
+										<span>
+											<img src="images/5-star.png" class="rating-star">
+										</span>
+									</div>
+								</div>
+								<div class="rating-mark" id="vod-rating">5</div>
+								<span class="vod-summary-item-text" id="vod-summary-release-length"></span>
+							</div>
+							<div class="vod-summary-information-container position-relative">
+								<p class="vod-summary-item">
+									<span class="vod-summary-item-label" data-word_code="date_added">
+										Date Added:
+									</span>
+									<span class="vod-summary-item-text" id="vod-summary-release-date"></span>
+								</p>
+								<p id="vod-summary-description"></p>
+							</div>
+						</div>
+						<div class="cast-title hide" data-word_code="cast">Cast:</div>
+						<div id="casts-container" class="cast-slider-wrapper"> </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="series-summary-page" class="height-100 position-relative hide">
+			<div class="series-detail-page">
+				<img class="vod-series-background-img" onerror="this.src='images/background.jpg'">
+				<div class="vod-series-background-img-overlay"></div>
+				<div class="vod-series-summary-page-contents-container">
+					<div>
+						<div id="series-summary-action-container">
+							<div id="series-summary-image-wrapper">
+								<img onerror="this.src='images/placeholder.png'">
+							</div>
+							<button id="series-watch-movie-button" class="btn series-action-btn vod-series-action-btn"
+								onmouseenter="seriesSummary.hoverButton(0)" onclick="seriesSummary.showSeason()">
+								<img src="images/play.png" id="player-icon">
+								<span data-word_code="watch_season">Watch Series</span>
+							</button>
+							<button id="series-watch-trailer-button" class="btn series-action-btn vod-series-action-btn"
+								onmouseenter="seriesSummary.hoverButton(1)" onclick="seriesSummary.showTrailerVideo()">
+								<i>
+									<img src="images/youtube_icon.png" id="youtube-icon">
+								</i>
+								<span data-word_code="watch_trailer">Watch Trailer</span>
+							</button>
+							<button id="series-add-favorite-button" class="btn series-action-btn vod-series-action-btn"
+								data-action="add" data-type="series" onmouseenter="seriesSummary.hoverButton(2)"
+								onclick="seriesSummary.toggleFavorite(this)">
+								<div class="favorite-badge-wrapper">
+									<i>
+										<img src="images/star.png" id="series-favorite-icon">
+									</i>
+								</div>
+							</button>
+						</div>
+						<div id="series-summary-page-content" class="row-item">
+							<div class="row-item">
+								<div class="element-4"></div>
+								<div class="element-8">
+									<div id="series-summary-name"></div>
+									<div id="series-summary-informations-container">
+										<div class="series-summary-information-container position-relative">
+											<h3 id="selected-season-name"></h3>
+											<div class="vod-series-rating-container" id="series-rating-container">
+												<div class="genre-container">
+													<div class="series-genre-text-year"></div>
+													<div class="series-genre-text-content"></div>
+												</div>
+												<div class="genre-container">
+													<span class="cast-content"></span>
+												</div>
+												<div class="rating">
+													<div class="rating-upper">
+														<span>
+															<img src="images/5-star.png" class="rating-star">
+														</span>
+														<span>
+															<img src="images/5-star.png" class="rating-star">
+														</span>
+														<span>
+															<img src="images/5-star.png" class="rating-star">
+														</span>
+														<span>
+															<img src="images/5-star.png" class="rating-star">
+														</span>
+														<span>
+															<img src="images/5-star.png" class="rating-star">
+														</span>
+														<span>
+															<img src="images/5-star.png" class="rating-star">
+														</span>
+														<span>
+															<img src="images/5-star.png" class="rating-star">
+														</span>
+														<span>
+															<img src="images/5-star.png" class="rating-star">
+														</span>
+														<span>
+															<img src="images/5-star.png" class="rating-star">
+														</span>
+														<span>
+															<img src="images/5-star.png" class="rating-star">
+														</span>
+													</div>
+												</div>
+												<div class="rating-mark" id="series-rating">5</div>
+											</div>
+											<p class="vod-summary-item">
+												<span class="vod-summary-item-label" data-word_code="release_date">
+													Duration:
+												</span>
+												<span class="vod-summary-item-text"
+													id="series-summary-release-date"></span>
+											</p>
+											<p id="series-summary-description"></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="season-episodes-container" class="hide">
+				<div id="season-items-container"></div>
+				<div id="series-summary-episode-items-container-wrapper">
+					<div id="series-summary-episode-series-title"></div>
+					<div id="series-summary-episode-items-container"></div>
+				</div>
+			</div>
+		</div>
+		<div id="vod-series-player-page" class="height-100 position-relative hide">
+			<div class="player-container">
+				<video class="position-absolute" id="vod-series-player-video" type="application/avplayer"
+					style="width: 100%; height: 100%"></video>
+				<div id="text-track-container"></div>
+				<div class="video-loader">
+					<img src="images/loader.gif">
+				</div>
+				<div id="vod-series-video-title"></div>
+				<div class="text-track-container text-center position-absolute"></div>
+				<div class="video-error">
+					<img src="images/def_image.jpg">
+				</div>
+				<div id="vod-series-video-controls-container">
+					<div id="vod-series-progress-controls-container">
+						<div id="vod-series-progress-container">
+							<div id="vod-series-video-progressbar-container"
+								onmouseenter="vodSeriesPlayer.hoverSeekBar()">
+								<input id="vod-series-video-progress" class="progress-amount video-progress-bar-slider"
+									type="range" data-rangeslider>
+							</div>
+							<div id="vod-series-video-time-container" class="flex-container">
+								<span id="vod-series-video-current-time"
+									class="video-time video-current-time text-left">
+									00:00
+								</span>
+								<span id="vod-series-video-duration"
+									class="video-time text-right video-total-time text-right">
+									00:00
+								</span>
+							</div>
+						</div>
+						<div id="vod-series-video-controls-wrapper" class="flex-container">
+							<div class="video-control-icon text-center">
+								<i class="video-control-icon-img-container"
+									onmouseenter="vodSeriesPlayer.hoverVideoControlIcon(0)"
+									onclick="vodSeriesPlayer.showNextVideo(-1)">
+									<img src="images/media-step-backward.png">
+								</i>
+							</div>
+							<div class="video-control-icon text-center">
+								<i class="video-control-icon-img-container"
+									onmouseenter="vodSeriesPlayer.hoverVideoControlIcon(1)"
+									onclick="vodSeriesPlayer.seekTo(-30)">
+									<img src="images/fast-backword.png" class="video-control-fast-forward-icon">
+								</i>
+							</div>
+							<div class="video-control-icon text-center">
+								<i class="video-control-icon-img-container"
+									onmouseenter="vodSeriesPlayer.hoverVideoControlIcon(2)"
+									onclick="vodSeriesPlayer.playPauseVideo()">
+									<img src="images/media-pause.png" id="media-pause">
+									<img src="images/media-play.png" id="media-play"
+										class="hide video-control-fast-forward-icon">
+								</i>
+							</div>
+							<div class="video-control-icon text-center">
+								<i class="video-control-icon-img-container"
+									onmouseenter="vodSeriesPlayer.hoverVideoControlIcon(3)"
+									onclick="vodSeriesPlayer.seekTo(30)">
+									<img src="images/fast-forward.png" class="video-control-fast-forward-icon">
+								</i>
+							</div>
+							<div class="video-control-icon text-center">
+								<i class="video-control-icon-img-container"
+									onmouseenter="vodSeriesPlayer.hoverVideoControlIcon(4)"
+									onclick="vodSeriesPlayer.showNextVideo(1)">
+									<img src="images/media-step-forward.png">
+								</i>
+							</div>
+						</div>
+					</div>
+					<div class="video-info-btns-container flex-container">
+						<div class="video-info-btn">
+							<div class="video-info-icon" onmouseenter="vodSeriesPlayer.hoverVideoInfoIcon(0)"
+								onclick="vodSeriesPlayer.showVideoInfo()">
+								<i class="video-control-icon-img-container">
+									<img src="images/info.png" width="30">
+								</i>
+							</div>
+						</div>
+						<div class="video-info-btn">
+							<div class="video-info-icon" onmouseenter="vodSeriesPlayer.hoverVideoInfoIcon(1)"
+								onclick="vodSeriesPlayer.showTextTracksModal()">
+								<i class="video-control-icon-img-container">
+									<img src="images/settings/subtitle.png" width="30">
+								</i>
+							</div>
+						</div>
+						<div class="video-info-btn">
+							<div class="video-info-icon" onmouseenter="vodSeriesPlayer.hoverVideoInfoIcon(2)"
+								onclick="vodSeriesPlayer.showDelaySettingModal()">
+								<i class="video-control-icon-img-container">
+									<img src="images/settings/clock.png" width="30">
+								</i>
+							</div>
+						</div>
+						<div class="video-info-btn">
+							<div class="video-info-icon" onmouseenter="vodSeriesPlayer.hoverVideoInfoIcon(3)"
+								onclick="vodSeriesPlayer.showAudioTracksModal()">
+								<i class="video-control-icon-img-container">
+									<img src="images/audio.png" width="30">
+								</i>
+							</div>
+						</div>
+					</div>
+					<div id="player-seasons-container">
+						<div class="player-season-item">
+							<img class="pleyer-episode-img" src="images/placeholder.png">
+							<div class="player-episode-title">Episode 1</div>
+						</div>
+						<div class="player-season-item">
+							<img class="pleyer-episode-img" src="images/placeholder.png">
+							<div class="player-episode-title">Episode 1</div>
+						</div>
+						<div class="player-season-item">
+							<img class="pleyer-episode-img" src="images/placeholder.png">
+							<div class="player-episode-title">Episode 1</div>
+						</div>
+						<div class="player-season-item">
+							<img class="pleyer-episode-img" src="images/placeholder.png">
+							<div class="player-episode-title">Episode 1</div>
+						</div>
+						<div class="player-season-item">
+							<img class="player-episode-img" src="images/placeholder.png">
+							<div class="player-episode-title">Episode 1</div>
+						</div>
+						<div class="player-season-item">
+							<img class="pleyer-episode-img" src="images/placeholder.png">
+							<div class="player-episode-title">Episode 1</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="vod-video-info-container">
+				<div id="vod-video-info-img-container">
+					<img onerror="this.src='images/series_icon.png'">
+				</div>
+				<div id="vod-video-info-wrapper">
+					<div id="vod-video-info-subwrapper1">
+						<div id="vod-video-info-title">Feride - 2020</div>
+						<div id="vod-video-info-desc"></div>
+					</div>
+					<div id="vod-video-info-subwrapper2"></div>
+				</div>
+			</div>
+			<div class="modal" id="text-tracks-modal" data-backdrop="static">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content text-tracks-selection-content">
+						<div class="modal-header">
+							<h5 class="modal-title" data-word_code="subtitle">Subtitle</h5>
+						</div>
+						<div class="modal-body" id="text-tracks-modal-body">
+							<div id="text-tracks-selection-container">
+								<div class="text-tracks-item active" onmouseenter="vodSeriesPlayer.hoverTextTracks(0)"
+									onclick="vodSeriesPlayer.handleMenuClick()">
+									<input class="magic-radio" type="radio" name="radio" id="disable-text-tracks"
+										value="1">
+									<label for="disable-text-tracks">English</label>
+								</div>
+							</div>
+							<div class="modal-button-wrapper text-tracks-modal-btn-container">
+								<div class="modal-btn-wrapper">
+									<button type="button" class="btn modal-btn-2 text-track-btn"
+										onmouseenter="vodSeriesPlayer.hoverTextTrackConfirmBtn(0)"
+										onclick="vodSeriesPlayer.confirmTextTrack()" data-word_code="ok">
+										OK
+									</button>
+								</div>
+								<div class="modal-c-btn-wrapper">
+									<button type="button" class="btn modal-btn-2 text-track-btn"
+										onclick="vodSeriesPlayer.cancelTextTracks()" data-word_code="cancel"
+										onmouseenter="vodSeriesPlayer.hoverTextTrackConfirmBtn(1)">
+										Cancel
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal" id="text-tracks-delay-setting-modal" data-backdrop="static">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content text-tracks-selection-content">
+						<div class="modal-header">
+							<h5 class="modal-title" data-word_code="subtitle_timing_adjustment">Subtitle Timing
+								Adjustment</h5>
+						</div>
+						<div class="modal-body " id="text-tracks-delay-setting-body">
+							<h6 class="modal-title" data-word_code="subtitle_timing_desc">If your subtitles are out
+								of
+								sync, adjust their timing here.</h6>
+							<div class="flex-container">
+								<div id="text-tracks-delay-selection-container"
+									onmouseenter="vodSeriesPlayer.hoverDelayItem(0)"
+									onclick="vodSeriesPlayer.clickDelayInputBox()">
+									<input type="number" id="text-track-delay-time" class="form-control delay-item" />
+								</div>
+								<div class="modal-button-wrapper text-tracks-delay-setting-btn-container">
+									<div class="text-track-delay-confirm-btn-container">
+										<button type="button" class="btn modal-btn-2 text-track-delay-btn delay-item"
+											onmouseenter="vodSeriesPlayer.hoverDelayItem(1)"
+											onclick="vodSeriesPlayer.confirmTextTrackDelay()" data-word_code="ok">
+											OK
+										</button>
+									</div>
+									<div class="modal-c-btn-wrapper">
+										<button type="button" class="btn modal-btn-2 text-track-delay-btn delay-item"
+											onclick="vodSeriesPlayer.cancelTextTracksDelay()" data-word_code="cancel"
+											onmouseenter="vodSeriesPlayer.hoverDelayItem(2)">
+											Cancel
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal" id="player-ratio-modal" data-backdrop="static">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content no-background">
+						<div class="modal-header modal-bg-cyan p-5">
+							<h5 class="modal-title modal-title-text-2" style="text-align: center">
+								Screen Ratio
+							</h5>
+						</div>
+						<div class="modal-body p-20 modal-bg-cyan" id="player-ratio-container"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="entire-search-page" class="height-100 hide">
+			<div class="top-menu-titles top-menu-search-bar" style="border: none">
+				<div id="entire-search-bar" onmouseenter="entireSearch.focusSearchBar()">
+					<img src="images/search.png" class="search-icon" width="28">
+					<input id="entire-search-value" onkeyup="entireSearch.searchValueChange()"
+						onchange="entireSearch.searchValueChange()">
+				</div>
+			</div>
+			<div id="live-entire-search">
+				<div id="entire-live-title" class="title hide" data-word_code="live_tv">
+					Live TV
+				</div>
+				<div class="entire-live-search-container">
+					<div id="entire-live-wrapper" class="movie-slider-wrapper position-relative"></div>
+				</div>
+			</div>
+			<div id="movie-entire-search">
+				<div id="entire-movies-title" class="title hide" data-word_code="movies">
+					Movies
+				</div>
+				<div class="entire-movies-search-container">
+					<div id="entire-movies-wrapper" class="movie-slider-wrapper position-relative"></div>
+				</div>
+			</div>
+			<div id="series-entire-search">
+				<div id="entire-series-title" class="title hide" data-word_code="series">
+					Series
+				</div>
+				<div class="entire-series-search-container">
+					<div id="entire-series-wrapper" class="movie-slider-wrapper position-relative"></div>
+				</div>
+			</div>
+		</div>
+		<div id="trailer-player-page" class="height-100 position-relative" style="display: none">
+			<div id="trailer-player" width="100%" height="100%"></div>
+		</div>
+		<div class="modal" id="user-account-modal" data-backdrop="static">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content">
+					<div class="modal-header modal-bg-cyan user-account-modal-header">
+						<h5 class="modal-title modal-title-text-2" data-word_code="user_account" style="color: white">
+							Account
+						</h5>
+					</div>
+					<div class="modal-body p-20 modal-bg-cyan">
+						<div class="user-account-item-wrapper">
+							<div class="user-account-label" data-word_code="mac_address">
+								Mac address
+							</div>
+							<div class="user-account-value" id="user-account-mac-address"></div>
+						</div>
+						<div class="user-account-item-wrapper">
+							<div class="user-account-label" data-word_code="device_key">
+								Device Key
+							</div>
+							<div class="user-account-value user-account-device-key"></div>
+						</div>
+						<div class="user-account-item-wrapper">
+							<div class="user-account-label" data-word_code="app_status">
+								App Status
+							</div>
+							<div class="user-account-value" id="user-account-is_trial">
+								Trial
+							</div>
+						</div>
+						<div class="user-account-item-wrapper">
+							<div class="user-account-label" data-word_code="expire_date">
+								Expire Date
+							</div>
+							<div class="user-account-value expire-date" id="user-account-expire-date"></div>
+						</div>
+						<div class="user-account-item-wrapper">
+							<div class="user-account-label" data-word_code="playlist_expire_date">
+								Playlist Expiry Date
+							</div>
+							<div class="user-account-value playlist-expired"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="setting-page" class="height-100 position-relative hide">
+			<div class="text-left">
+				<img class="page-logo" src="images/banner.png">
+				<div class="page-title" data-word_code="settings">Playlists</div>
+			</div>
+			<div id="setting-menus-container">
+				<div class="setting-menu-item-container">
+					<div class="setting-menu-item-wrapper" onclick="setting.handleMenuClick()"
+						onmouseenter="setting.hoverSettingMenu(0)">
+						<div class="setting-menu-item-icon-container">
+							<img src="images/settings/lock.png" width="50">
+						</div>
+						<div class="setting-menu-item-text" data-word_code="parent_control">
+							Parental Control
+						</div>
+					</div>
+				</div>
+				<div class="setting-menu-item-container">
+					<div class="setting-menu-item-wrapper" onclick="setting.handleMenuClick()"
+						onmouseenter="setting.hoverSettingMenu(1)">
+						<div class="setting-menu-item-icon-container">
+							<img src="images/settings/switch.png">
+						</div>
+						<div class="setting-menu-item-text disable-parent-control-text"
+							data-word_code="disable_parent_control">
+							Disable Parent Control
+						</div>
+					</div>
+				</div>
+				<div class="setting-menu-item-container">
+					<div class="setting-menu-item-wrapper" onclick="setting.handleMenuClick()"
+						onmouseenter="setting.hoverSettingMenu(2)">
+						<div class="setting-menu-item-icon-container">
+							<img src="images/settings/list.png">
+						</div>
+						<div class="setting-menu-item-text" data-word_code="change_playlist">
+							Change Server
+						</div>
+					</div>
+				</div>
+				<div class="setting-menu-item-container">
+					<div class="setting-menu-item-wrapper" onclick="setting.handleMenuClick()"
+						onmouseenter="setting.hoverSettingMenu(3)">
+						<div class="setting-menu-item-icon-container">
+							<img src="images/settings/language.png">
+						</div>
+						<div class="setting-menu-item-text" data-word_code="change_language">
+							Change Language
+						</div>
+					</div>
+				</div>
+				<div class="setting-menu-item-container">
+					<div class="setting-menu-item-wrapper" onclick="setting.handleMenuClick()"
+						onmouseenter="setting.hoverSettingMenu(4)">
+						<div class="setting-menu-item-icon-container">
+							<img src="images/settings/eye.png">
+						</div>
+						<div class="setting-menu-item-text" data-word_code="hide_live_category">
+							Hide Live Categories
+						</div>
+					</div>
+				</div>
+				<div class="setting-menu-item-container">
+					<div class="setting-menu-item-wrapper" onclick="setting.handleMenuClick()"
+						onmouseenter="setting.hoverSettingMenu(5)">
+						<div class="setting-menu-item-icon-container">
+							<img src="images/settings/eye.png">
+						</div>
+						<div class="setting-menu-item-text" data-word_code="hide_vod_category">
+							Hide Vod Categories
+						</div>
+					</div>
+				</div>
+				<div class="setting-menu-item-container">
+					<div class="setting-menu-item-wrapper" onclick="setting.handleMenuClick()"
+						onmouseenter="setting.hoverSettingMenu(6)">
+						<div class="setting-menu-item-icon-container">
+							<img src="images/settings/eye.png">
+						</div>
+						<div class="setting-menu-item-text" data-word_code="hide_series_category">
+							Hide Series Categories
+						</div>
+					</div>
+				</div>
+				<div class="setting-menu-item-container">
+					<div class="setting-menu-item-wrapper" onclick="setting.handleMenuClick()"
+						onmouseenter="setting.hoverSettingMenu(7)">
+						<div class="setting-menu-item-icon-container">
+							<img src="images/settings/subtitle.png" width="50">
+						</div>
+						<div class="setting-menu-item-text" data-word_code="subtitle_settings">
+							Subtitle Settings
+						</div>
+					</div>
+				</div>
+
+				<div class="setting-menu-item-container">
+					<div class="setting-menu-item-wrapper" onclick="setting.handleMenuClick()"
+						onmouseenter="setting.hoverSettingMenu(8)">
+						<div class="setting-menu-item-icon-container">
+							<img src="images/settings/delete.png">
+						</div>
+						<div class="setting-menu-item-text" data-word_code="clear_history_channels">
+							Clear History Channels
+						</div>
+					</div>
+				</div>
+				<div class="setting-menu-item-container">
+					<div class="setting-menu-item-wrapper" onclick="setting.handleMenuClick()"
+						onmouseenter="setting.hoverSettingMenu(9)">
+						<div class="setting-menu-item-icon-container">
+							<img src="images/settings/delete.png">
+						</div>
+						<div class="setting-menu-item-text" data-word_code="clear_history_movies">
+							Clear History Movies
+						</div>
+					</div>
+				</div>
+				<div class="setting-menu-item-container">
+					<div class="setting-menu-item-wrapper" onclick="setting.handleMenuClick()"
+						onmouseenter="setting.hoverSettingMenu(10)">
+						<div class="setting-menu-item-icon-container">
+							<img src="images/settings/delete.png">
+						</div>
+						<div class="setting-menu-item-text" data-word_code="clear_history_series">
+							Clear History Series
+						</div>
+					</div>
+				</div>
+				<div class="setting-menu-item-container">
+					<div class="setting-menu-item-wrapper" onclick="setting.handleMenuClick()"
+						onmouseenter="setting.hoverSettingMenu(11)">
+						<div class="setting-menu-item-icon-container">
+							<img src="images/settings/delete.png" />
+						</div>
+						<div class="setting-menu-item-text" data-word_code="delete_cache">
+							Delete Cache
+						</div>
+					</div>
+				</div>
+				<div class="setting-menu-item-container">
+					<div class="setting-menu-item-wrapper" onclick="setting.handleMenuClick()"
+						onmouseenter="setting.hoverSettingMenu(12)">
+						<div class="setting-menu-item-icon-container">
+							<img src="images/settings/default_live.png">
+						</div>
+						<div class="setting-menu-item-text" data-word_code="live_stream_format">
+							Live Stream Format
+						</div>
+					</div>
+				</div>
+				<div class="setting-menu-item-container">
+					<div class="setting-menu-item-wrapper" onclick="setting.handleMenuClick()"
+						onmouseenter="setting.hoverSettingMenu(13)">
+						<div class="setting-menu-item-icon-container">
+							<img src="images/settings/clock.png">
+						</div>
+						<div class="setting-menu-item-text" data-word_code="time_format">
+							Time Format
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="setting-mac-address">
+				<span data-word_code="mac_address">Mac Address</span>
+				:
+				<span class="mac-address"></span>
+				&nbsp;&nbsp;&nbsp;
+				<span data-word_code="device_key" class="device-key-label">
+					Device Key
+				</span>
+				:
+				<span class="device-key"></span>
+			</div>
+		</div>
+		<div class="modal" id="catchup-audio-tracks-modal" data-backdrop="static">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content audio-tracks-selection-content">
+					<div class="modal-header">
+						<h5 class="modal-title" data-word_code="audio_track">
+							Audio Tracks
+						</h5>
+					</div>
+					<div class="modal-body" id="catchup-audio-tracks-modal-body">
+						<div id="catchup-audio-tracks-selection-container">
+							<div class="audio-tracks-item active" onmouseenter="catchup.hoverAudioTracks(0)"
+								onclick="catchup.handleMenuClick()">
+								<input class="magic-radio" type="radio" name="radio" id="catchup-disable-audio-tracks"
+									value="1">
+								<label for="catchup-disable-audio-tracks">English</label>
+							</div>
+						</div>
+						<div class="modal-button-wrapper audio-tracks-modal-btn-container">
+							<div class="modal-btn-wrapper">
+								<button type="button" class="btn modal-btn-2 audio-track-btn"
+									onmouseenter="catchup.hoverAudioTrackConfirmBtn(0)"
+									onclick="catchup.confirmAudioTrack()" data-word_code="ok">
+									OK
+								</button>
+							</div>
+							<div class="modal-c-btn-wrapper">
+								<button type="button" class="btn modal-btn-2 audio-track-btn" data-word_code="cancel"
+									onmouseenter="catchup.hoverAudioTrackConfirmBtn(1)"
+									onclick="catchup.cancelAudioTracks()">
+									Cancel
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="channel-audio-tracks-modal" data-backdrop="static">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content audio-tracks-selection-content">
+					<div class="modal-header">
+						<h5 class="modal-title" data-word_code="audio_track">
+							Audio Tracks
+						</h5>
+					</div>
+					<div class="modal-body" id="channel-audio-tracks-modal-body">
+						<div id="channel-audio-tracks-selection-container">
+							<div class="audio-tracks-item active" onmouseenter="channel.hoverAudioTracks(0)"
+								onclick="channel.handleMenuClick()">
+								<input class="magic-radio" type="radio" name="radio" id="channel-disable-audio-tracks"
+									value="1">
+								<label for="channel-disable-audio-tracks">English</label>
+							</div>
+						</div>
+						<div class="modal-button-wrapper audio-tracks-modal-btn-container">
+							<div class="modal-btn-wrapper">
+								<button type="button" class="btn modal-btn-2 audio-track-btn"
+									onmouseenter="channel.hoverAudioTrackConfirmBtn(0)"
+									onclick="channel.confirmAudioTrack()" data-word_code="ok">
+									OK
+								</button>
+							</div>
+							<div class="modal-c-btn-wrapper">
+								<button type="button" class="btn modal-btn-2 audio-track-btn" data-word_code="cancel"
+									onmouseenter="channel.hoverAudioTrackConfirmBtn(1)"
+									onclick="channel.cancelAudioTracks()">
+									Cancel
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="audio-tracks-modal" data-backdrop="static">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content audio-tracks-selection-content">
+					<div class="modal-header">
+						<h5 class="modal-title" data-word_code="audio_track">
+							Audio Tracks
+						</h5>
+					</div>
+					<div class="modal-body" id="audio-tracks-modal-body">
+						<div id="audio-tracks-selection-container">
+							<div class="audio-tracks-item active" onmouseenter="vodSeriesPlayer.hoverAudioTracks(0)"
+								onclick="vodSeriesPlayer.handleMenuClick()">
+								<input class="magic-radio" type="radio" name="radio" id="disable-audio-tracks"
+									value="1">
+								<label for="disable-audio-tracks">English</label>
+							</div>
+						</div>
+						<div class="modal-button-wrapper audio-tracks-modal-btn-container">
+							<div class="modal-btn-wrapper">
+								<button type="button" class="btn modal-btn-2 audio-track-btn"
+									onmouseenter="vodSeriesPlayer.hoverAudioTrackConfirmBtn(0)"
+									onclick="vodSeriesPlayer.confirmAudioTrack()" data-word_code="ok">
+									OK
+								</button>
+							</div>
+							<div class="modal-c-btn-wrapper">
+								<button type="button" class="btn modal-btn-2 audio-track-btn" data-word_code="cancel"
+									onmouseenter="vodSeriesPlayer.hoverAudioTrackConfirmBtn(1)"
+									onclick="vodSeriesPlayer.cancelAudioTracks()">
+									Cancel
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="parent-control-modal" data-backdrop="static">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content modal-bg-cyan">
+					<div class="modal-header">
+						<h5 class="modal-title modal-title-text-2 parent-control-modal-header"
+							data-word_code="parent_control">
+							Parent Control
+						</h5>
+					</div>
+					<div class="modal-body p-20">
+						<div class="parent-modal-input-container">
+							<div class="parent-modal-input-item-container" onmouseenter="setting.hoverParentControl(0)"
+								onclick="setting.clickParentControl(0)">
+								<div class="parent-modal-label-wrapper text-right">
+									<label class data-word_code="password">
+										Current Password:
+									</label>
+								</div>
+								<div class="parent-modal-input-wrapper">
+									<input class="form-control parent-password" id="current_parent_password"
+										type="password" maxlength="4">
+								</div>
+							</div>
+							<div class="parent-modal-input-item-container" onmouseenter="setting.hoverParentControl(1)"
+								onclick="setting.clickParentControl(1)">
+								<div class="parent-modal-label-wrapper text-right">
+									<label class data-word_code="net_pass">New Password:</label>
+								</div>
+								<div class="parent-modal-input-wrapper">
+									<input class="form-control parent-password" id="new_parent_password" type="password"
+										maxlength="4">
+								</div>
+							</div>
+							<div class="parent-modal-input-item-container" onmouseenter="setting.hoverParentControl(2)"
+								onclick="setting.clickParentControl(2)">
+								<div class="parent-modal-label-wrapper text-right">
+									<label class data-word_code="confirm_password">
+										Confirm Password:
+									</label>
+								</div>
+								<div class="parent-modal-input-wrapper">
+									<input class="form-control parent-password" id="new_parent_password_confirm"
+										type="password" maxlength="4">
+								</div>
+							</div>
+							<div class="parent-pin-invalid">
+								<div class="parent-modal-input-wrapper">
+									<span class="invalid-feedback" id="parent-account-valid-error"></span>
+								</div>
+							</div>
+						</div>
+						<div class="text-center">
+							<button type="button" class="btn modal-btn-1 parent-control-modal-button"
+								data-word_code="ok" onmouseenter="setting.hoverParentControl(3)"
+								onclick="setting.clickParentControl(3)">
+								OK
+							</button>
+							<button type="button" class="btn modal-btn-1 parent-control-modal-button"
+								data-word_code="cancel" onmouseenter="setting.hoverParentControl(4)"
+								onclick="setting.clickParentControl(4)">
+								Cancel
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="hide-category-modal" data-backdrop="static">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content no-background">
+					<div class="modal-header modal-bg-cyan p-5">
+						<h5 class="modal-title modal-title-text-2" style="text-align: center"
+							data-word_code="select_categories_you_want_to_hide">
+							Unselect Categories you want to hide
+						</h5>
+					</div>
+					<div class="modal-body p-20 modal-bg-cyan" id="hide-modal-categories-container"></div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="clear-history-channels-modal" data-backdrop="static">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content no-background">
+					<div class="modal-header modal-bg-cyan p-5">
+						<h5 class="modal-title modal-title-text-2" style="text-align: center"
+							data-word_code="clear_history_channels">
+							clear history channels
+						</h5>
+					</div>
+					<div class="modal-body p-20 modal-bg-cyan" id="clear-history-channels-modal-container"></div>
+					<div class="clear-history-series-modal-button-container">
+						<button type="button" class="btn modal-btn-1 clear-history-channels-modal-button"
+							data-word_code="ok" onmouseenter="setting.hoverClearChannelsHistory(0)"
+							onclick="setting.clickClearChannelsHistory(0)">
+							OK
+						</button>
+						<button type="button" class="btn modal-btn-1 clear-history-channels-modal-button"
+							data-word_code="select_all" style="margin-left: 15px; margin-right: 15px"
+							onmouseenter="setting.hoverClearChannelsHistory(1)"
+							onclick="setting.clickSelectAllClearHistoryChannels(1)">
+							SELECT ALL
+						</button>
+						<button type="button" class="btn modal-btn-1 clear-history-channels-modal-button"
+							data-word_code="cancel" onmouseenter="setting.hoverClearChannelsHistory(2)"
+							onclick="setting.clickClearChannelsHistory(1)">
+							Cancel
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="clear-history-movies-modal" data-backdrop="static">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content no-background">
+					<div class="modal-header modal-bg-cyan p-5">
+						<h5 class="modal-title modal-title-text-2" style="text-align: center"
+							data-word_code="clear_history_movies">
+							clear history movies
+						</h5>
+					</div>
+					<div class="modal-body p-20 modal-bg-cyan" id="clear-history-movies-modal-container"></div>
+					<div class="clear-history-series-modal-button-container">
+						<button type="button" class="btn modal-btn-1 clear-history-movies-modal-button"
+							data-word_code="ok" onmouseenter="setting.hoverClearMoviesHistory(0)"
+							onclick="setting.clickClearMoviesHistory(0)">
+							OK
+						</button>
+						<button type="button" class="btn modal-btn-1 clear-history-movies-modal-button"
+							data-word_code="select_all" style="margin-left: 15px; margin-right: 15px"
+							onmouseenter="setting.hoverClearMoviesHistory(1)"
+							onclick="setting.clickSelectAllClearHistoryMovies(1)">
+							SELECT ALL
+						</button>
+						<button type="button" class="btn modal-btn-1 clear-history-movies-modal-button"
+							data-word_code="cancel" onmouseenter="setting.hoverClearMoviesHistory(2)"
+							onclick="setting.clickClearMoviesHistory(1)">
+							Cancel
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="clear-history-series-modal" data-backdrop="static">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content no-background">
+					<div class="modal-header modal-bg-cyan p-5">
+						<h5 class="modal-title modal-title-text-2" style="text-align: center"
+							data-word_code="clear_history_series">
+							clear history series
+						</h5>
+					</div>
+					<div class="modal-body p-20 modal-bg-cyan" id="clear-history-series-modal-container"></div>
+					<div class="clear-history-series-modal-button-container">
+						<button type="button" class="btn modal-btn-1 clear-history-series-modal-button"
+							data-word_code="ok" onmouseenter="setting.hoverClearSeriesHistory(0)"
+							onclick="setting.clickClearSeriesHistory(0)">
+							OK
+						</button>
+						<button type="button" class="btn modal-btn-1 clear-history-series-modal-button"
+							data-word_code="select_all" style="margin-left: 15px; margin-right: 15px"
+							onmouseenter="setting.hoverClearSeriesHistory(1)"
+							onclick="setting.clickSelectAllClearHistorySeries(1)">
+							SELECT ALL
+						</button>
+						<button type="button" class="btn modal-btn-1 clear-history-series-modal-button"
+							data-word_code="cancel" onmouseenter="setting.hoverClearSeriesHistory(2)"
+							onclick="setting.clickClearSeriesHistory(1)">
+							Cancel
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="livestream-format-modal" data-backdrop="static">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content no-background">
+					<div class="modal-header modal-bg-cyan p-5">
+						<h5 class="modal-title modal-title-text-2" style="text-align: center"
+							data-word_code="live_stream_format">
+							Live Stream Format
+						</h5>
+					</div>
+					<div class="modal-body p-20 modal-bg-cyan" id="livestream-format-modal-container"></div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="disable-parent-control-modal" data-backdrop="static">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content no-background">
+					<div class="modal-header modal-bg-cyan p-5">
+						<h5 class="modal-title modal-title-text-2" style="text-align: center"
+							data-word_code="parent_control">
+							parent Control
+						</h5>
+					</div>
+					<div class="modal-body p-20 modal-bg-cyan" id="disable-parent-control-modal-container"></div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="time-format-modal" data-backdrop="static">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content no-background">
+					<div class="modal-header modal-bg-cyan p-5">
+						<h5 class="modal-title modal-title-text-2" style="text-align: center"
+							data-word_code="time_format">
+							Time Format
+						</h5>
+					</div>
+					<div class="modal-body p-20 modal-bg-cyan" id="time-format-modal-container"></div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="language-select-modal" data-backdrop="static">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header modal-header-bg-img-1">
+						<h5 class="modal-title modal-title-text-2 text-center" data-word_code="change_language">
+							Select Language
+						</h5>
+					</div>
+					<div class="modal-body p-20 modal-bg-cyan" id="select-language-body"></div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="text-tracks-settings-modal" data-backdrop="static">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header modal-header-bg-img-1">
+						<h5 class="modal-title modal-title-text-2 text-center" data-word_code="subtitle_settings">
+							Subtitle Settings
+						</h5>
+					</div>
+					<div class="modal-body p-20 modal-bg-cyan" style="padding: 20px 30px"
+						id="text-tracks-settings-body">
+						<div class="hide-category-modal-option flex-container">
+							<div class="text-tracks-color-wrapper flex-container">
+								<img src="images/text.png">
+								<span data-word_code="subtitel_size" class="ml-10">subtitle size</span>
+							</div>
+							<div class="text-tracks-setting-modal-option-fontsize-wrapper">
+								<div class="text-tracks-fontsize-wrapper">
+									<div class="increase-fontsize-btn" onclick="setting.increaseTextTracksFontSize(-5)"
+										onmouseenter="setting.hoverIncreaseTextTracksFontSize(0)">
+										<img src="images/minus.png">
+									</div>
+									<div class="increase-fontsize-item">
+										<span class="text-tracks-font-size">40</span>
+									</div>
+									<div class="increase-fontsize-btn" onclick="setting.increaseTextTracksFontSize(5)"
+										onmouseenter="setting.hoverIncreaseTextTracksFontSize(1)">
+										<img src="images/plus.png">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="hide-category-modal-option flex-container"
+							onclick="setting.clickTextTracksModalOption(0)"
+							onmouseenter="setting.hoverTextTracksModalOption(1)">
+							<div class="text-tracks-color-wrapper flex-container">
+								<img src="images/color.png">
+								<span data-word_code="subtitel_color" class="ml-10">Subtitle Color</span>
+							</div>
+							<div class="text-tracks-setting-modal-option-wrapper">
+								<div class="text-tracks-setting-modal-option-color"></div>
+							</div>
+						</div>
+						<div class="hide-category-modal-option flex-container"
+							onclick="setting.clickTextTracksModalOption(1)"
+							onmouseenter="setting.hoverTextTracksModalOption(2)">
+							<div class="text-tracks-color-wrapper flex-container">
+								<img src="images/background-color.png">
+								<span data-word_code="subtitel_background" class="ml-10">
+									Subtitle Background
+								</span>
+							</div>
+							<div class="text-tracks-setting-modal-option-wrapper">
+								<div class="text-tracks-setting-modal-option-bk"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="text-tracks-settings-color-modal" data-backdrop="static">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header modal-header-bg-img-1">
+						<h5 class="modal-title modal-title-text-2 text-center" data-word_code="subtitel_color">
+							Subtitle Settings
+						</h5>
+					</div>
+					<div class="modal-body p-20 modal-bg-cyan" style="padding: 20px 30px"
+						id="text-tracks-settings-color-body">
+						<div class="text-tracks-demo">
+							<div class="text-tracks-demo-bk">
+								<div class="text-tracks-example-text-container">
+									<p class="text-tracks-example-text">
+										<span class="text-tracks-example-text-item">
+											This is your subtitle example
+										</span>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="text-tracks-colors-container">
+							<div class>
+								<div class="text-tracks-color-item">
+									<div class="color-item color-0" onclick="setting.clickTextTrackColor(0)"
+										onmouseenter="setting.hoverTextTrackColor(0)">
+										<img src="images/check.png" class="text-tracks-color-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-color-item">
+									<div class="color-item color-1" onclick="setting.clickTextTrackColor(1)"
+										onmouseenter="setting.hoverTextTrackColor(1)">
+										<img src="images/check.png" class="text-tracks-color-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-color-item">
+									<div class="color-item color-2" onclick="setting.clickTextTrackColor(2)"
+										onmouseenter="setting.hoverTextTrackColor(2)">
+										<img src="images/check.png" class="text-tracks-color-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-color-item">
+									<div class="color-item color-3" onclick="setting.clickTextTrackColor(3)"
+										onmouseenter="setting.hoverTextTrackColor(3)">
+										<img src="images/check.png" class="text-tracks-color-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-color-item">
+									<div class="color-item color-4" onclick="setting.clickTextTrackColor(4)"
+										onmouseenter="setting.hoverTextTrackColor(4)">
+										<img src="images/check.png" class="text-tracks-color-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-color-item">
+									<div class="color-item color-5" onclick="setting.clickTextTrackColor(5)"
+										onmouseenter="setting.hoverTextTrackColor(5)">
+										<img src="images/check.png" class="text-tracks-color-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-color-item">
+									<div class="color-item color-6" onclick="setting.clickTextTrackColor(6)"
+										onmouseenter="setting.hoverTextTrackColor(6)">
+										<img src="images/check.png" class="text-tracks-color-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-color-item">
+									<div class="color-item color-7" onclick="setting.clickTextTrackColor(7)"
+										onmouseenter="setting.hoverTextTrackColor(7)">
+										<img src="images/check.png" class="text-tracks-color-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-color-item">
+									<div class="color-item color-8" onclick="setting.clickTextTrackColor(8)"
+										onmouseenter="setting.hoverTextTrackColor(8)">
+										<img src="images/check.png" class="text-tracks-color-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-color-item">
+									<div class="color-item color-9" onclick="setting.clickTextTrackColor(9)"
+										onmouseenter="setting.hoverTextTrackColor(9)">
+										<img src="images/check.png" class="text-tracks-color-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-color-item">
+									<div class="color-item color-10" onclick="setting.clickTextTrackColor(10)"
+										onmouseenter="setting.hoverTextTrackColor(10)">
+										<img src="images/check.png" class="text-tracks-color-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-color-item">
+									<div class="color-item color-11" onclick="setting.clickTextTrackColor(11)"
+										onmouseenter="setting.hoverTextTrackColor(11)">
+										<img src="images/check.png" class="text-tracks-color-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-color-item">
+									<div class="color-item color-12" onclick="setting.clickTextTrackColor(12)"
+										onmouseenter="setting.hoverTextTrackColor(12)">
+										<img src="images/check.png" class="text-tracks-color-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-color-item">
+									<div class="color-item color-13" onclick="setting.clickTextTrackColor(13)"
+										onmouseenter="setting.hoverTextTrackColor(13)">
+										<img src="images/check.png" class="text-tracks-color-check hide">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="text-tracks-settings-background-modal" data-backdrop="static">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header modal-header-bg-img-1">
+						<h5 class="modal-title modal-title-text-2 text-center" data-word_code="subtitel_background">
+							Subtitle Settings
+						</h5>
+					</div>
+					<div class="modal-body p-20 modal-bg-cyan" style="padding: 20px 30px"
+						id="text-tracks-settings-background-body">
+						<div class="text-tracks-demo-bk">
+							<div class="text-tracks-example-text-container">
+								<p class="text-tracks-example-text">
+									<span class="text-tracks-example-text-item">
+										This is your subtitle example
+									</span>
+								</p>
+							</div>
+						</div>
+						<div class="text-tracks-colors-container">
+							<div class>
+								<div class="text-tracks-background-item">
+									<div class="background-item background-0"
+										onclick="setting.clickTextTracksBackground(0)"
+										onmouseenter="setting.hoverTextTracksBackground(0)">
+										<img src="images/check.png" class="text-tracks-background-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-background-item">
+									<div class="background-item background-1"
+										onclick="setting.clickTextTracksBackground(1)"
+										onmouseenter="setting.hoverTextTracksBackground(1)">
+										<img src="images/check.png" class="text-tracks-background-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-background-item">
+									<div class="background-item background-2"
+										onclick="setting.clickTextTracksBackground(2)"
+										onmouseenter="setting.hoverTextTracksBackground(2)">
+										<img src="images/check.png" class="text-tracks-background-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-background-item">
+									<div class="background-item background-3"
+										onclick="setting.clickTextTracksBackground(3)"
+										onmouseenter="setting.hoverTextTracksBackground(3)">
+										<img src="images/check.png" class="text-tracks-background-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-background-item">
+									<div class="background-item background-4"
+										onclick="setting.clickTextTracksBackground(4)"
+										onmouseenter="setting.hoverTextTracksBackground(4)">
+										<img src="images/check.png" class="text-tracks-background-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-background-item">
+									<div class="background-item background-5"
+										onclick="setting.clickTextTracksBackground(5)"
+										onmouseenter="setting.hoverTextTracksBackground(5)">
+										<img src="images/check.png" class="text-tracks-background-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-background-item">
+									<div class="background-item background-6"
+										onclick="setting.clickTextTracksBackground(6)"
+										onmouseenter="setting.hoverTextTracksBackground(6)">
+										<img src="images/check.png" class="text-tracks-background-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-background-item">
+									<div class="background-item background-7"
+										onclick="setting.clickTextTracksBackground(7)"
+										onmouseenter="setting.hoverTextTracksBackground(7)">
+										<img src="images/check.png" class="text-tracks-background-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-background-item">
+									<div class="background-item background-8"
+										onclick="setting.clickTextTracksBackground(8)"
+										onmouseenter="setting.hoverTextTracksBackground(8)">
+										<img src="images/check.png" class="text-tracks-background-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-background-item">
+									<div class="background-item background-9"
+										onclick="setting.clickTextTracksBackground(9)"
+										onmouseenter="setting.hoverTextTracksBackground(9)">
+										<img src="images/check.png" class="text-tracks-background-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-background-item">
+									<div class="background-item background-10"
+										onclick="setting.clickTextTracksBackground(10)"
+										onmouseenter="setting.hoverTextTracksBackground(10)">
+										<img src="images/check.png" class="text-tracks-background-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-background-item">
+									<div class="background-item background-11"
+										onclick="setting.clickTextTracksBackground(11)"
+										onmouseenter="setting.hoverTextTracksBackground(11)">
+										<img src="images/check.png" class="text-tracks-background-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-background-item">
+									<div class="background-item background-12"
+										onclick="setting.clickTextTracksBackground(12)"
+										onmouseenter="setting.hoverTextTracksBackground(12)">
+										<img src="images/check.png" class="text-tracks-background-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-background-item">
+									<div class="background-item background-13"
+										onclick="setting.clickTextTracksBackground(13)"
+										onmouseenter="setting.hoverTextTracksBackground(13)">
+										<img src="images/check.png" class="text-tracks-background-check hide">
+									</div>
+								</div>
+								<div class="text-tracks-background-item">
+									<div class="background-item background-14"
+										onclick="setting.clickTextTracksBackground(14)"
+										onmouseenter="setting.hoverTextTracksBackground(14)">
+										<img src="images/check.png" class="text-tracks-background-check hide">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="delete-cache-modal" data-backdrop="static">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header modal-bg-cyan">
+						<h5 class="modal-title modal-title-text-2" style="text-align: center"
+							data-word_code="delete_cache">
+							Delete Cache
+						</h5>
+					</div>
+					<div class="modal-body p-20 modal-bg-cyan">
+						<h5 class="modal-text-1 text-center" id="delete-cache-modal-desc"
+							data-word_code="delete_cache_descr">
+							If you delete the cache, all settings, favorites, recent items, and saved videos will be
+							erased.
+							After clearing, the app will restart to apply the changes. Do you still want to continue?
+						</h5>
+						<div class="modal-button-wrapper text-center" id="delete-cache-modal-btn-container">
+							<button type="button" class="btn modal-btn-1 delete-cache-modal-button"
+								id="delete-cache-modal-btn" data-word_code="yes"
+								onmouseenter="setting.hoverDeleteCacheBtn(0)"
+								onclick="setting.handleDeleteCacheClick()">
+								Yes
+							</button>
+							<button type="button" id="delete-cache-modal-cancel"
+								class="btn modal-btn-1 delete-cache-modal-button" data-word_code="no"
+								onmouseenter="setting.hoverDeleteCacheBtn(1)"
+								onclick="setting.handleDeleteCacheClick()">
+								No
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="playlist-page" class="height-100 flex-container hide">
+			<div class="left-container">
+				<div class="text-left">
+					<img class="page-logo" src="images/banner.png">
+					<div class="page-title" data-word_code="playlists">Playlist</div>
+				</div>
+				<div id="playlist-items-container">
+					<div class="playlist-item-container">
+						<span class="playlist-icon-wrapper"></span>
+						<span class="playlist-name">Sample</span>
+						<div class="playlist-state">Connected</div>
+					</div>
+				</div>
+				<div class="exit-index hide">
+					<div class="flex-container">
+						<div class="red-square"></div>
+						<span class="exit-text" data-word_code="exit">Exit</span>
+					</div>
+				</div>
+			</div>
+			<div class="right-container">
+				<div class="playlist-page-activation-txt">
+					<span class="tv_is_trial hide" data-word_code="tv_is_trial">
+						Your MAC is Free Trial
+					</span>
+					<span class="mac_activated hide" data-word_code="mac_activated">
+						Your MAC is Activated
+					</span>
+					<br>
+					<span class="playlist-page-link login-note-txt-color">
+						https://iboproapp.com/
+					</span>
+				</div>
+				<div id="playlist-page-note-2" data-word_code="to_add_manage">
+					To add/manage the playlist,
+					<br>
+					use following values on website:
+				</div>
+				<div id="playlist-detail-container">
+					<div class="playlist-detail-label" data-word_code="mac_address">
+						Mac Address
+					</div>
+					<div class="playlist-detail-value mac-address">
+						52:54:00:12:34:56
+					</div>
+					<div class="playlist-detail-label" data-word_code="device_key">
+						Device Key
+					</div>
+					<div class="playlist-detail-value device-key">123456</div>
+				</div>
+				<div id="qr-code-container">
+					<img class="qr-code-img" src="images/qr-code.png">
+				</div>
+			</div>
+		</div>
+		<div id="sort-modal-container">
+			<div id="sort-modal-wrapper">
+				<div class="sort-modal-item" data-word_code="order_by_added"
+					onclick="vodSeries.changeSortKey('added',0)" onmouseenter="vodSeries.hoverChangeSortKey(0)"
+					data-sort_key="added">
+					Order By Added
+				</div>
+				<div class="sort-modal-item" data-word_code="order_by_number"
+					onclick="vodSeries.changeSortKey('number',1)" onmouseenter="vodSeries.hoverChangeSortKey(1)"
+					data-sort_key="number">
+					Order By Number
+				</div>
+				<div class="sort-modal-item" data-word_code="order_by_rating"
+					onclick="vodSeries.changeSortKey('rating',2)" onmouseenter="vodSeries.hoverChangeSortKey(2)"
+					data-sort_key="rating">
+					Order By Rating
+				</div>
+				<div class="sort-modal-item" data-word_code="order_by_name" onclick="vodSeries.changeSortKey('name',3)"
+					onmouseenter="vodSeries.hoverChangeSortKey(3)" data-sort_key="name">
+					Order By Name
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="parent-confirm-modal" data-backdrop="static">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content modal-bg-cyan">
+					<div class="modal-header">
+						<h5 class="modal-title modal-title-text-2" style="font-size: 40px"
+							data-word_code="parent_control">
+							Parent Control
+						</h5>
+					</div>
+					<div class="modal-body p-20">
+						<div class="parent-modal-input-container">
+							<div class="parent-modal-input-item-container">
+								<div class="parent-modal-label-wrapper text-right">
+									<label data-word_code="password">Password:</label>
+								</div>
+								<div class="parent-modal-input-wrapper parent-confirm-item"
+									onmouseenter="parentConfirm.hoverConfirmBtn(0)">
+									<input class="form-control" id="parent-confirm-password" type="password"
+										maxlength="4">
+								</div>
+							</div>
+							<div class="parent-pin-error">
+								<div class="parent-modal-input-wrapper">
+									<span class="invalid-feedback" id="parent-confirm-password-error">
+										parent password does not match.
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="text-center">
+							<button type="button"
+								class="btn modal-btn-1 parent-confirm-modal-button parent-confirm-item"
+								onmouseenter="parentConfirm.hoverConfirmBtn(1)"
+								onclick="parentConfirm.handleMenuClick()" data-word_code="ok" style="width: 150px">
+								OK
+							</button>
+							<button type="button"
+								class="btn modal-btn-1 parent-confirm-modal-button parent-confirm-item"
+								data-word_code="cancel" onmouseenter="parentConfirm.hoverConfirmBtn(2)"
+								onclick="parentConfirm.handleMenuClick()" style="width: 150px; margin-left: 5px">
+								Cancel
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="stop-playerback-modal" data-backdrop="static">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content modal-bg-cyan" id="stop-playback-modal-container">
+					<div class="modal-body">
+						<h4 class="modal-text-1 text-center" id="stop-playback-txt" data-word_code="stop_playback">
+							Stop Playback?
+						</h4>
+						<h5 id="stop-playback-desc" class="modal-text-1 text-center"
+							data-word_code="playback_description">
+							Click YES to exit the play. Click NO to cancel
+						</h5>
+						<div class="modal-button-wrapper text-right" id="stop-playback-container">
+							<button type="button" id="stop-playback-btn" class="btn modal-btn-1" data-word_code="yes"
+								onmouseenter="vodSeriesPlayer.hoverExitPlaybackMenuItem(0)"
+								onclick="vodSeriesPlayer.clickExitPlay(0)">
+								Yes
+							</button>
+							<button type="button" id="stop-playback-cancel" class="btn modal-btn-1" data-word_code="no"
+								onmouseenter="vodSeriesPlayer.hoverExitPlaybackMenuItem(1)"
+								onclick="vodSeriesPlayer.clickExitPlay(1)">
+								No
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal" id="network-modal" data-backdrop="static">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content modal-bg-cyan" style="border-radius: 10px; padding-top: 20px">
+					<div class="modal-body">
+						<h5 class="modal-text-1 text-center" id="network-modal-desc" data-word_code="check_internet">
+							Network Error! Please check your internet connection and try
+							again.
+						</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="video-resume-modal">
+			<div id="video-resume-content">
+				<div class="text-center" data-word_code="resume" id="vod-resume-title">
+					Resume
+				</div>
+				<div class="text-center" data-word_code="resume_video" id="vod-resume-desc">
+					Resume playback from last position?
+				</div>
+				<div class="text-center" id="vod-resume-time">03:35</div>
+				<button type="button" class="btn btn-primary resume-action-btn" data-word_code="yes"
+					onmouseenter="vodSeriesPlayer.hoverResumeBtn(0)" onclick="vodSeriesPlayer.handleMenuClick()">
+					Yes
+				</button>
+				<button type="button" class="btn btn-primary resume-action-btn resume-right" data-word_code="no"
+					onmouseenter="vodSeriesPlayer.hoverResumeBtn(1)" onclick="vodSeriesPlayer.handleMenuClick()">
+					No
+				</button>
+			</div>
+		</div>
+		<div id="epg-loading-modal">
+			<div id="epg-loading-modal-content">
+				<div id="epg-loading-modal-content-text" data-word_code="epg_loading_title">
+					Please wait while downloading and parsing Epg Data.
+					<br>
+					It will take some time.
+				</div>
+				<div id="loading-content-progress-bar">
+					<div id="loading-content-progress-amount"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="toast">
+		<div class="toast-contents"></div>
+	</div>
+	<div id="loader" class="vertical-center" style="display: none">
+		<div class="load-container">
+			<img src="images/loader.gif">
+		</div>
+	</div>
+</body>
+<script src="js/libs/jquery.3.7.1.min.js" charset="utf-8"></script>
+<script src="js/libs/bootstrap.4.4.1.min.js" charset="utf-8"></script>
+<script src="$WEBAPIS/webapis/webapis.js"></script>
+<script src="js/libs/rangeslider.js" charset="utf-8"></script>
+<script src="https://www.youtube.com/iframe_api" charset="utf-8"></script>
+<script src="js/libs/moment.js" charset="utf-8"></script>
+<script src="js/index.js" charset="utf-8"></script>
+<script src="js/languages/languages.js" charset="utf-8"></script>
+<script src="js/models/VodModel.js" charset="utf-8"></script>
+<script src="js/models/LiveModel.js" charset="utf-8"></script>
+<script src="js/models/SeriesModel.js" charset="utf-8"></script>
+<script src="js/helpers/movieHelper.js" charset="utf-8"></script>
+<script src="js/helpers/timeHelper.js" charset="utf-8"></script>
+<script src="js/helpers/rangeSlider.js" charset="utf-8"></script>
+<script src="js/helpers/apiHelper.js" charset="utf-8"></script>
+<script src="js/helpers/encryptHelper.js" charset="utf-8"></script>
+<script src="js/config/config.js" charset="utf-8"></script>
+<script src="js/keyCodes.js" charset="utf-8"></script>
+<script src="js/event.js" charset="utf-8"></script>
+<script src="js/base.js" charset="utf-8"></script>
+<script src="js/login.js" charset="utf-8"></script>
+<script src="js/home.js" charset="utf-8"></script>
+<script src="js/channel.js" charset="utf-8"></script>
+<script src="js/vodSeriesPage.js" charset="utf-8"></script>
+<script src="js/vodSummary.js" charset="utf-8"></script>
+<script src="js/seriesSummary.js" charset="utf-8"></script>
+<script src="js/entireSearch.js" charset="utf-8"></script>
+<script src="js/trailer.js" charset="utf-8"></script>
+<script src="js/vodSeriesPlayer.js" charset="utf-8"></script>
+<script src="js/catchup.js" charset="utf-8"></script>
+<script src="js/playlists.js" charset="utf-8"></script>
+<script src="js/parentConfirm.js" charset="utf-8"></script>
+<script src="js/setting.js" charset="utf-8"></script>
+<script src="js/settings.js" charset="utf-8"></script>
+<script src="js/exit.js" charset="utf-8"></script>
+<script src="js/mediaPlayer.js" charset="utf-8"></script>
+<script src="js/network.js" charset="utf-8"></script>
+
+</html>

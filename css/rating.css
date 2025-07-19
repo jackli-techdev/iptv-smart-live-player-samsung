@@ -1,0 +1,37 @@
+.vod-series-rating-container {
+	margin: 10px auto;
+}
+
+.rating-mark {
+	margin-left: 10px;
+	color: #fff;
+	font-weight: bold;
+}
+
+.rating {
+	display: inline-block;
+	unicode-bidi: bidi-override;
+	color: #888888;
+	font-size: 35px;
+	height: 35px;
+	width: auto;
+	margin: 0;
+	position: relative;
+	padding: 0;
+}
+
+.rating-upper {
+	padding: 0;
+	overflow: hidden;
+	margin-top: -20px;
+}
+
+.rating-mark {
+	display: inline-block;
+}
+
+.rating-star {
+	width: 26px;
+	height: 26px;
+	margin-top: 20px;
+}
