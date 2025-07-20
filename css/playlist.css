@@ -1,39 +1,46 @@
-#playlist-page .left-container {
+#playlist-page {
+	font-size: 0;
+}
+
+#playlist-page-left-part {
 	display: inline-block;
 	vertical-align: top;
-	height: 100%;
-	color: #fff;
-	font-size: 35px;
-	text-align: center;
-	border-right: 2px solid #ddd;
-	padding: 40px 20px 10px 20px;
 	width: 70%;
-}
-
-#setting-page .page-title {
-	font-size: 35px;
-}
-
-#playlist-page .right-container {
-	display: inline-block;
-	vertical-align: top;
 	height: 100%;
-	font-size: 28px;
 	color: #fff;
-	padding: 80px 30px;
+	font-size: 35px;
 	text-align: center;
-	width: 30%;
+	border-right: 2px solid #fff;
+	padding: 40px;
+}
+
+#playlist-title-part {
+	position: relative;
+	font-size: 40px;
 }
 
 #playlist-items-container {
 	position: relative;
 	margin-top: 20px;
-	min-height: 850px;
+	min-height: 600px;
+	font-size: 0;
 	text-align: left;
 }
 
-#playlist-page-note-2 {
+#playlist-page-right-part {
+	display: inline-block;
+	vertical-align: top;
+	width: 30%;
+	height: 100%;
+	font-size: 28px;
+	color: #fff;
+	padding: 80px 30px;
+	text-align: center;
+}
+
+#playlist-pate-note-2 {
 	margin: 30px 0;
+	color: white;
 }
 
 .playlist-detail-label {
@@ -42,16 +49,18 @@
 
 .playlist-detail-value {
 	margin-bottom: 5px;
-	color: yellow;
 }
 
 .playlist-item-container {
-	width: 32.4%;
+	width: 33.33%;
+	padding: 5px;
 	display: inline-block;
 	vertical-align: middle;
+}
+
+.playlist-item-wrapper {
 	border-radius: 5px;
 	font-size: 25px;
-	background: #33253c;
 	background-position: center center;
 	background-size: 100%;
 	position: relative;
@@ -60,16 +69,16 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	border: 2px solid transparent;
+	border: 2px solid rgba(255, 255, 255, 0.4);
 	background-origin: border-box;
 	transition: all 0.1s;
 	height: 180px;
-	margin: 6px;
 }
 
-.playlist-item-container:hover,
-.playlist-item-container.active {
+.playlist-item-container:hover .playlist-item-wrapper,
+.playlist-item-container.active .playlist-item-wrapper {
 	border-color: yellow;
+	background: rgba(0, 0, 0, 0.3);
 }
 
 .playlist-icon-wrapper {
@@ -77,6 +86,7 @@
 	display: inline-block;
 	text-overflow: ellipsis;
 	overflow: hidden;
+	font-size: 30px;
 }
 
 .playlist-icon {
@@ -86,18 +96,17 @@
 }
 
 .playlist-state {
-	background: #4a73dc;
+	background: #6581ea;
 	border-radius: 15px;
 	font-size: 18px;
-	width: 110px;
 	text-align: center;
 	display: none;
 	letter-spacing: 1.5px;
-	padding: 3px;
+	padding: 3px 6px;
 }
 
 .playlist-state.playing {
-	display: block;
+	display: inline-block;
 }
 
 #user-notes-container {
@@ -107,9 +116,8 @@
 }
 
 .playlist-name {
-	color: #b4b0b6;
-}
-
-.playlist-page-link {
-	color: yellow;
+	color: white;
+	font-size: 30px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

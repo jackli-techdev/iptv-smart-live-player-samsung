@@ -1,5 +1,5 @@
 /*! rangeslider.js - v2.3.2 | (c) 2018 @andreruffert | MIT license | https://github.com/andreruffert/rangeslider.js */
-(function(factory) {
+(function (factory) {
     'use strict';
 
     if (typeof define === 'function' && define.amd) {
@@ -12,12 +12,12 @@
         // Browser globals
         factory(jQuery);
     }
-}(function($) {
+}(function ($) {
     'use strict';
 
     // Polyfill Number.isNaN(value)
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN
-    Number.isNaN = Number.isNaN || function(value) {
+    Number.isNaN = Number.isNaN || function (value) {
         return typeof value === 'number' && value !== value;
     };
 
@@ -75,7 +75,7 @@
      */
     function delay(fn, wait) {
         var args = Array.prototype.slice.call(arguments, 2);
-        return setTimeout(function(){ return fn.apply(null, args); }, wait);
+        return setTimeout(function () { return fn.apply(null, args); }, wait);
     }
 
     /**
@@ -88,46 +88,36 @@
      */
     function debounce(fn, debounceDuration) {
         debounceDuration = debounceDuration || 100;
-        return function() {
+        return function () {
             if (!fn.debouncing) {
                 var args = Array.prototype.slice.apply(arguments);
                 fn.lastReturnVal = fn.apply(window, args);
                 fn.debouncing = true;
             }
             clearTimeout(fn.debounceTimeout);
-            fn.debounceTimeout = setTimeout(function(){
+            fn.debounceTimeout = setTimeout(function () {
                 fn.debouncing = false;
             }, debounceDuration);
             return fn.lastReturnVal;
         };
     }
 
-    /**
-     * Check if a `element` is visible in the DOM
-     *
-     * @param  {Element}  element
-     * @return {Boolean}
-     */
+
     function isHidden(element) {
         return (
             element && (
                 element.offsetWidth === 0 ||
                 element.offsetHeight === 0 ||
-                // Also Consider native `<details>` elements.
+
                 element.open === false
             )
         );
     }
 
-    /**
-     * Get hidden parentNodes of an `element`
-     *
-     * @param  {Element} element
-     * @return {[type]}
-     */
+
     function getHiddenParentNodes(element) {
         var parents = [],
-            node    = element.parentNode;
+            node = element.parentNode;
 
         while (isHidden(node)) {
             parents.push(node);
@@ -144,12 +134,11 @@
      * @return {Number}
      */
     function getDimension(element, key) {
-        var hiddenParentNodes       = getHiddenParentNodes(element),
+        var hiddenParentNodes = getHiddenParentNodes(element),
             hiddenParentNodesLength = hiddenParentNodes.length,
-            inlineStyle             = [],
-            dimension               = element[key];
+            inlineStyle = [],
+            dimension = element[key];
 
-        // Used for native `<details>` elements
         function toggleOpenProperty(element) {
             if (typeof element.open !== 'undefined') {
                 element.open = (element.open) ? false : true;
@@ -215,19 +204,19 @@
      * @param {Object} options
      */
     function Plugin(element, options) {
-        this.$window            = $(window);
-        this.$document          = $(document);
-        this.$element           = $(element);
-        this.options            = $.extend( {}, defaults, options );
-        this.polyfill           = this.options.polyfill;
-        this.orientation        = this.$element[0].getAttribute('data-orientation') || this.options.orientation;
-        this.onInit             = this.options.onInit;
-        this.onSlide            = this.options.onSlide;
-        this.onSlideEnd         = this.options.onSlideEnd;
-        this.DIMENSION          = constants.orientation[this.orientation].dimension;
-        this.DIRECTION          = constants.orientation[this.orientation].direction;
-        this.DIRECTION_STYLE    = constants.orientation[this.orientation].directionStyle;
-        this.COORDINATE         = constants.orientation[this.orientation].coordinate;
+        this.$window = $(window);
+        this.$document = $(document);
+        this.$element = $(element);
+        this.options = $.extend({}, defaults, options);
+        this.polyfill = this.options.polyfill;
+        this.orientation = this.$element[0].getAttribute('data-orientation') || this.options.orientation;
+        this.onInit = this.options.onInit;
+        this.onSlide = this.options.onSlide;
+        this.onSlideEnd = this.options.onSlideEnd;
+        this.DIMENSION = constants.orientation[this.orientation].dimension;
+        this.DIRECTION = constants.orientation[this.orientation].direction;
+        this.DIRECTION_STYLE = constants.orientation[this.orientation].directionStyle;
+        this.COORDINATE = constants.orientation[this.orientation].coordinate;
 
         // Plugin should only be used as a polyfill
         if (this.polyfill) {
@@ -235,14 +224,14 @@
             if (hasInputRangeSupport) { return false; }
         }
 
-        this.identifier = 'js-' + pluginName + '-' +(pluginIdentifier++);
+        this.identifier = 'js-' + pluginName + '-' + (pluginIdentifier++);
         this.startEvent = this.options.startEvent.join('.' + this.identifier + ' ') + '.' + this.identifier;
-        this.moveEvent  = this.options.moveEvent.join('.' + this.identifier + ' ') + '.' + this.identifier;
-        this.endEvent   = this.options.endEvent.join('.' + this.identifier + ' ') + '.' + this.identifier;
-        this.toFixed    = (this.step + '').replace('.', '').length - 1;
-        this.$fill      = $('<div class="' + this.options.fillClass + '" />');
-        this.$handle    = $('<div class="' + this.options.handleClass + '" />');
-        this.$range     = $('<div class="' + this.options.rangeClass + ' ' + this.options[this.orientation + 'Class'] + '" id="' + this.identifier + '" />').insertAfter(this.$element).prepend(this.$fill, this.$handle);
+        this.moveEvent = this.options.moveEvent.join('.' + this.identifier + ' ') + '.' + this.identifier;
+        this.endEvent = this.options.endEvent.join('.' + this.identifier + ' ') + '.' + this.identifier;
+        this.toFixed = (this.step + '').replace('.', '').length - 1;
+        this.$fill = $('<div class="' + this.options.fillClass + '" />');
+        this.$handle = $('<div class="' + this.options.handleClass + '" />');
+        this.$range = $('<div class="' + this.options.rangeClass + ' ' + this.options[this.orientation + 'Class'] + '" id="' + this.identifier + '" />').insertAfter(this.$element).prepend(this.$fill, this.$handle);
 
         // visually hide the input
         this.$element.css({
@@ -256,21 +245,21 @@
         // Store context
         this.handleDown = $.proxy(this.handleDown, this);
         this.handleMove = $.proxy(this.handleMove, this);
-        this.handleEnd  = $.proxy(this.handleEnd, this);
+        this.handleEnd = $.proxy(this.handleEnd, this);
 
         this.init();
 
         // Attach Events
         var _this = this;
-        this.$window.on('resize.' + this.identifier, debounce(function() {
+        this.$window.on('resize.' + this.identifier, debounce(function () {
             // Simulate resizeEnd event.
-            delay(function() { _this.update(false, false); }, 300);
+            delay(function () { _this.update(false, false); }, 300);
         }, 20));
 
         this.$document.on(this.startEvent, '#' + this.identifier + ':not(.' + this.options.disabledClass + ')', this.handleDown);
 
         // Listen to programmatic value changes
-        this.$element.on('change.' + this.identifier, function(e, data) {
+        this.$element.on('change.' + this.identifier, function (e, data) {
             if (data && data.origin === _this.identifier) {
                 return;
             }
@@ -281,7 +270,7 @@
         });
     }
 
-    Plugin.prototype.init = function() {
+    Plugin.prototype.init = function () {
         this.update(true, false);
 
         if (this.onInit && typeof this.onInit === 'function') {
@@ -289,21 +278,21 @@
         }
     };
 
-    Plugin.prototype.update = function(updateAttributes, triggerSlide) {
+    Plugin.prototype.update = function (updateAttributes, triggerSlide) {
         updateAttributes = updateAttributes || false;
 
         if (updateAttributes) {
-            this.min    = tryParseFloat(this.$element[0].getAttribute('min'), 0);
-            this.max    = tryParseFloat(this.$element[0].getAttribute('max'), 100);
-            this.value  = tryParseFloat(this.$element[0].value, Math.round(this.min + (this.max-this.min)/2));
-            this.step   = tryParseFloat(this.$element[0].getAttribute('step'), 1);
+            this.min = tryParseFloat(this.$element[0].getAttribute('min'), 0);
+            this.max = tryParseFloat(this.$element[0].getAttribute('max'), 100);
+            this.value = tryParseFloat(this.$element[0].value, Math.round(this.min + (this.max - this.min) / 2));
+            this.step = tryParseFloat(this.$element[0].getAttribute('step'), 1);
         }
 
-        this.handleDimension    = getDimension(this.$handle[0], 'offset' + ucfirst(this.DIMENSION));
-        this.rangeDimension     = getDimension(this.$range[0], 'offset' + ucfirst(this.DIMENSION));
-        this.maxHandlePos       = this.rangeDimension - this.handleDimension;
-        this.grabPos            = this.handleDimension / 2;
-        this.position           = this.getPositionFromValue(this.value);
+        this.handleDimension = getDimension(this.$handle[0], 'offset' + ucfirst(this.DIMENSION));
+        this.rangeDimension = getDimension(this.$range[0], 'offset' + ucfirst(this.DIMENSION));
+        this.maxHandlePos = this.rangeDimension - this.handleDimension;
+        this.grabPos = this.handleDimension / 2;
+        this.position = this.getPositionFromValue(this.value);
 
         // Consider disabled state
         if (this.$element[0].disabled) {
@@ -315,7 +304,7 @@
         this.setPosition(this.position, triggerSlide);
     };
 
-    Plugin.prototype.handleDown = function(e) {
+    Plugin.prototype.handleDown = function (e) {
         e.preventDefault();
 
         // Only respond to mouse main button clicks (usually the left button)
@@ -324,8 +313,6 @@
         this.$document.on(this.moveEvent, this.handleMove);
         this.$document.on(this.endEvent, this.handleEnd);
 
-        // add active class because Firefox is ignoring
-        // the handle:active pseudo selector because of `e.preventDefault();`
         this.$range.addClass(this.options.activeClass);
 
         // If we click on the handle don't set the new position
@@ -333,10 +320,10 @@
             return;
         }
 
-        var pos         = this.getRelativePosition(e),
-            rangePos    = this.$range[0].getBoundingClientRect()[this.DIRECTION],
-            handlePos   = this.getPositionFromNode(this.$handle[0]) - rangePos,
-            setPos      = (this.orientation === 'vertical') ? (this.maxHandlePos - (pos - this.grabPos)) : (pos - this.grabPos);
+        var pos = this.getRelativePosition(e),
+            rangePos = this.$range[0].getBoundingClientRect()[this.DIRECTION],
+            handlePos = this.getPositionFromNode(this.$handle[0]) - rangePos,
+            setPos = (this.orientation === 'vertical') ? (this.maxHandlePos - (pos - this.grabPos)) : (pos - this.grabPos);
 
         this.setPosition(setPos);
 
@@ -345,14 +332,14 @@
         }
     };
 
-    Plugin.prototype.handleMove = function(e) {
+    Plugin.prototype.handleMove = function (e) {
         e.preventDefault();
         var pos = this.getRelativePosition(e);
         var setPos = (this.orientation === 'vertical') ? (this.maxHandlePos - (pos - this.grabPos)) : (pos - this.grabPos);
         this.setPosition(setPos);
     };
 
-    Plugin.prototype.handleEnd = function(e) {
+    Plugin.prototype.handleEnd = function (e) {
         e.preventDefault();
         this.$document.off(this.moveEvent, this.handleMove);
         this.$document.off(this.endEvent, this.handleEnd);
@@ -367,13 +354,13 @@
         }
     };
 
-    Plugin.prototype.cap = function(pos, min, max) {
+    Plugin.prototype.cap = function (pos, min, max) {
         if (pos < min) { return min; }
         if (pos > max) { return max; }
         return pos;
     };
 
-    Plugin.prototype.setPosition = function(pos, triggerSlide) {
+    Plugin.prototype.setPosition = function (pos, triggerSlide) {
         var value, newPos;
 
         if (triggerSlide === undefined) {
@@ -399,7 +386,7 @@
     };
 
     // Returns element position relative to the parent
-    Plugin.prototype.getPositionFromNode = function(node) {
+    Plugin.prototype.getPositionFromNode = function (node) {
         var i = 0;
         while (node !== null) {
             i += node.offsetLeft;
@@ -408,7 +395,7 @@
         return i;
     };
 
-    Plugin.prototype.getRelativePosition = function(e) {
+    Plugin.prototype.getRelativePosition = function (e) {
         // Get the offset DIRECTION relative to the viewport
         var ucCoordinate = ucfirst(this.COORDINATE),
             rangePos = this.$range[0].getBoundingClientRect()[this.DIRECTION],
@@ -424,39 +411,37 @@
         ) {
             pageCoordinate = e.originalEvent.touches[0]['client' + ucCoordinate];
         }
-        else if(e.currentPoint && typeof e.currentPoint[this.COORDINATE] !== 'undefined') {
+        else if (e.currentPoint && typeof e.currentPoint[this.COORDINATE] !== 'undefined') {
             pageCoordinate = e.currentPoint[this.COORDINATE];
         }
 
         return pageCoordinate - rangePos;
     };
 
-    Plugin.prototype.getPositionFromValue = function(value) {
+    Plugin.prototype.getPositionFromValue = function (value) {
         var percentage, pos;
-        percentage = (value - this.min)/(this.max - this.min);
+        percentage = (value - this.min) / (this.max - this.min);
         pos = (!Number.isNaN(percentage)) ? percentage * this.maxHandlePos : 0;
         return pos;
     };
 
-    Plugin.prototype.getValueFromPosition = function(pos) {
+    Plugin.prototype.getValueFromPosition = function (pos) {
         var percentage, value;
         percentage = ((pos) / (this.maxHandlePos || 1));
         value = this.step * Math.round(percentage * (this.max - this.min) / this.step) + this.min;
         return Number((value).toFixed(this.toFixed));
     };
 
-    Plugin.prototype.setValue = function(value) {
+    Plugin.prototype.setValue = function (value) {
         if (value === this.value && this.$element[0].value !== '') {
             return;
         }
-
-        // Set the new value and fire the `input` event
         this.$element
             .val(value)
             .trigger('input', { origin: this.identifier });
     };
 
-    Plugin.prototype.destroy = function() {
+    Plugin.prototype.destroy = function () {
         this.$document.off('.' + this.identifier);
         this.$window.off('.' + this.identifier);
 
@@ -473,20 +458,18 @@
 
     // A really lightweight plugin wrapper around the constructor,
     // preventing against multiple instantiations
-    $.fn[pluginName] = function(options) {
+    $.fn[pluginName] = function (options) {
         var args = Array.prototype.slice.call(arguments, 1);
 
-        return this.each(function() {
+        return this.each(function () {
             var $this = $(this),
-                data  = $this.data('plugin_' + pluginName);
+                data = $this.data('plugin_' + pluginName);
 
             // Create a new instance.
             if (!data) {
                 $this.data('plugin_' + pluginName, (data = new Plugin(this, options)));
             }
 
-            // Make it possible to access methods from public.
-            // e.g `$element.rangeslider('method');`
             if (typeof options === 'string') {
                 data[options].apply(data, args);
             }

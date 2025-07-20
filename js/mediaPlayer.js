@@ -1,5 +1,5 @@
 "use strict";
-var mediaPlayer = {
+var media_player = {
   videoObj: null,
   parent_id: "",
   currentURL: "",
@@ -10,44 +10,31 @@ var mediaPlayer = {
     PAUSED: 2,
     PREPARED: 4
   },
-  currentTime: 0,
-  isEnded: false,
-  reConnectTimer: null,
-  reConnectCount: 0,
-  reconnectMaxCount: 20,
+  state: 0,
+  current_time: 0,
 
-  live_init: function (id, parent_id) {
+  live_init: function (id, parent_id, currentProgramDuration) {
+    media_player.currentProgramDuration = currentProgramDuration;
     this.id = id;
     this.videoObj = null;
-    this.state = 0;
+    media_player.state = 0;
     this.state = this.STATES.STOPPED;
     this.parent_id = parent_id;
-    this.currentTime = 0;
-    var that = this;
+    this.current_time = 0;
 
     if (!this.videoObj && id) {
       this.videoObj = document.getElementById(id);
       var videoObj = this.videoObj;
       var that = this;
-
-      this.reConnectCount = 0;
-      clearTimeout(this.reConnectTimer);
-
       this.videoObj.addEventListener("error", function (e) {
         $("#" + that.parent_id).find(".video-error").show();
-        that.retryPlayAsync();
       });
-
       this.videoObj.addEventListener("canplay", function (e) {
         $("#" + that.parent_id).find(".video-error").hide();
-        $('#' + that.parent_id).find('.reconnect-noti').hide();
-        that.reConnectCount = 0;
-        clearTimeout(that.reConnectTimer);
-
       });
       this.videoObj.addEventListener("durationchange", function (event) { });
       this.videoObj.addEventListener("loadeddata", function (event) {
-        $("#" + that.parent_id).find(".video-error").hide();
+        that.videoObj.style.display = 'block';
         var duration = parseInt(videoObj.duration);
         var attributes = {
           min: 0,
@@ -65,15 +52,12 @@ var mediaPlayer = {
         $("#" + that.parent_id)
           .find(".video-progress-bar-slider")
           .rangeslider("update");
-
-        $('#' + that.parent_id).find('.reconnect-noti').hide();
-        that.reConnectCount = 0;
-        clearTimeout(that.reConnectTimer);
+        if (current_route === "vod-series-player-video") {
+          vod_series_player_page.showResumeBar();
+        }
       });
-
-      $('#' + that.parent_id).find('.reconnect-noti').hide();
-
       this.videoObj.ontimeupdate = function (event) {
+        $("#" + that.parent_id).find(".video-error").hide();
         var duration = videoObj.duration;
         var currentTime = videoObj.currentTime;
         if (duration > 0) {
@@ -89,8 +73,8 @@ var mediaPlayer = {
             .html(that.formatTime(currentTime));
         }
       };
-
       this.videoObj.addEventListener("loadedmetadata", function () {
+        showLoader(false);
         var duration = parseInt(videoObj.duration);
         var attributes = {
           min: 0,
@@ -113,20 +97,39 @@ var mediaPlayer = {
       this.videoObj.addEventListener("waiting", function (event) { });
       this.videoObj.addEventListener("suspend", function (event) { });
       this.videoObj.addEventListener("stalled", function (event) { });
-      this.videoObj.addEventListener("ended", function (event) {
-        that.retryPlayAsync();
-      });
+      this.videoObj.addEventListener("ended", function (event) { });
     }
   },
 
+  retryPlayAsync: function (url, retries, interval) {
+    var that = this;
+    retries = (typeof retries !== 'undefined') ? retries : 3;
+    interval = (typeof interval !== 'undefined') ? interval : 10000;
+
+    function attemptPlay(remainingRetries) {
+      that.playAsync(url).catch(function (error) {
+        console.error('Error occurred:', error);
+        if (remainingRetries > 0) {
+          attemptPlay(remainingRetries - 1);
+        } else {
+          setTimeout(function () {
+            if (that.isSameChannel)
+              attemptPlay(retries);
+          }, interval);
+        }
+      });
+    }
+
+    attemptPlay(retries);
+  },
+
   init: function (id, parent_id) {
-    var _this = this;
     this.id = id;
     this.videoObj = null;
-    this.state = 0;
-    this.state = this.STATES.STOPPED;
+    media_player.state = 0;
+    media_player.state = this.STATES.STOPPED;
     this.parent_id = parent_id;
-    this.currentTime = 0;
+    this.current_time = 0;
 
     if (!this.videoObj && id) {
       this.videoObj = document.getElementById(id);
@@ -140,6 +143,7 @@ var mediaPlayer = {
       });
       this.videoObj.addEventListener("durationchange", function (event) { });
       this.videoObj.addEventListener("loadeddata", function (event) {
+        that.videoObj.style.display = 'block';
         var duration = parseInt(videoObj.duration);
         var attributes = {
           min: 0,
@@ -157,8 +161,8 @@ var mediaPlayer = {
         $("#" + that.parent_id)
           .find(".video-progress-bar-slider")
           .rangeslider("update");
-        if (currentRoute === "vod-series-player-video") {
-          vodSeriesPlayer.showResumeBar();
+        if (current_route === "vod-series-player-video") {
+          vod_series_player_page.showResumeBar();
         }
       });
       this.videoObj.ontimeupdate = function (event) {
@@ -179,8 +183,8 @@ var mediaPlayer = {
         }
       };
       this.videoObj.addEventListener("loadedmetadata", function () {
+        showLoader(false);
         var duration = parseInt(videoObj.duration);
-
         var attributes = {
           min: 0,
           max: duration
@@ -198,23 +202,113 @@ var mediaPlayer = {
       this.videoObj.addEventListener("waiting", function (event) { });
       this.videoObj.addEventListener("suspend", function (event) { });
       this.videoObj.addEventListener("stalled", function (event) { });
-
-      function onVideoEnded() {
-        if (!mediaPlayer.isEnded) {
-          vodSeriesPlayer.showNextVideo(1);
-          mediaPlayer.isEnded = true
-        }
-      }
-      this.videoObj.addEventListener("ended", onVideoEnded);
+      this.videoObj.addEventListener("ended", function (event) {
+        if (current_route === "vod-series-player-video")
+          vod_series_player_page.showNextVideo(1);
+      });
     }
   },
 
-  play: function () {
-    if (this.state < this.STATES.PAUSED) {
+  play: function (url) {
+    if (media_player.state < this.STATES.PAUSED) {
       return;
     }
-    this.state = this.STATES.PLAYING;
-    this.videoObj.play();
+    media_player.state = this.STATES.PLAYING;
+    if (url) {
+      this.videoObj.src = url;
+    } else {
+      this.videoObj.play();
+    }
+  },
+
+  playAsync: function (url) {
+    if (url === this.currentURL) {
+      this.isSameChannel = true;
+    } else
+      this.isSameChannel = false;
+
+    if (current_route !== "channel-page")
+      showLoader(true);
+
+    this.currentURL = url;
+    userAgent = getLocalStorageData("userAgent");
+    var that = this;
+    if (url) {
+      if (useragentFlag) {
+        return fetch(url, {
+          headers: {
+            'User-Agent': userAgent
+          }
+        })
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            var newUrl = response.url;
+            that.videoObj.pause();
+
+            $("#" + that.parent_id).find(".video-error").hide();
+            while (that.videoObj.firstChild)
+              that.videoObj.removeChild(that.videoObj.firstChild);
+            that.videoObj.load();
+
+            var source = document.createElement("source");
+            source.setAttribute("src", newUrl);
+            that.videoObj.appendChild(source)
+
+            that.videoObj.play();
+            source.addEventListener("error", function (e) {
+              $("#" + that.parent_id).find(".video-error").show();
+            });
+            source.addEventListener("emptied", function (event) {
+              $("#" + that.parent_id).find(".video-error").show();
+            });
+            media_player.state = media_player.STATES.PLAYING;
+          }).catch(function (error) {
+            that.videoObj.pause();
+            $("#" + that.parent_id).find(".video-error").hide();
+            while (that.videoObj.firstChild)
+              that.videoObj.removeChild(that.videoObj.firstChild);
+            that.videoObj.load();
+
+            var source = document.createElement("source");
+            source.setAttribute("src", url);
+            that.videoObj.appendChild(source)
+
+            that.videoObj.play();
+            source.addEventListener("error", function (e) {
+              $("#" + that.parent_id).find(".video-error").show();
+            });
+            source.addEventListener("emptied", function (event) {
+              $("#" + that.parent_id).find(".video-error").show();
+            });
+            console.error('Fetching video failed:', error);
+            media_player.state = media_player.STATES.PLAYING;
+          });
+      } else {
+        that.videoObj.pause();
+        $("#" + that.parent_id).find(".video-error").hide();
+        while (that.videoObj.firstChild)
+          that.videoObj.removeChild(that.videoObj.firstChild);
+        that.videoObj.load();
+
+        var source = document.createElement("source");
+        source.setAttribute("src", url);
+        that.videoObj.appendChild(source)
+
+        that.videoObj.play();
+        source.addEventListener("error", function (e) {
+          $("#" + that.parent_id).find(".video-error").show();
+        });
+        source.addEventListener("emptied", function (event) {
+          $("#" + that.parent_id).find(".video-error").show();
+        });
+      }
+    } else {
+      media_player.state = media_player.STATES.PLAYING;
+      this.videoObj.play();
+    }
+    media_player.state = media_player.STATES.PLAYING;
   },
 
   playFromNetworkIssue: function () {
@@ -222,91 +316,25 @@ var mediaPlayer = {
     this.videoObj.play();
   },
 
-  retryPlayAsync: function () {
-    if (currentRoute !== "channel-page")
-      return;
-    clearTimeout(this.reConnectTimer);
-    this.reConnectCount += 1;
-    if (this.reConnectCount >= this.reconnectMaxCount) {
-      $('#' + this.parent_id).find('.reconnect-noti').hide();
-      return;
-    }
-    $('#' + this.parent_id).find('.reconnect-noti').show();
-    var that = this;
-    try {
-      this.videoObj.pause();
-    } catch (e) {
-    }
-    this.reconnectTimer = setTimeout(function () {
-      that.playAsync(that.currentURL);
-    }, 4000)
-  },
-
-  playAsync: function (url) {
-    console.log('url', url)
-    mediaPlayer.isEnded = false
-    if (url === this.currentURL) {
-      this.isSameChannel = true;
-    } else
-      this.isSameChannel = false;
-
-    this.currentURL = url;
-
-    if (url) {
-      try {
-        this.videoObj.pause();
-      } catch (e) {
-      }
-
-      var that = this;
-      if (this.reConnectCount < 1)
-        $("#" + this.parent_id).find(".video-error").hide();
-      while (this.videoObj.firstChild)
-        this.videoObj.removeChild(this.videoObj.firstChild);
-      this.videoObj.load();
-
-      var source = document.createElement("source");
-      source.setAttribute("src", url);
-      this.videoObj.appendChild(source)
-
-      this.videoObj.play();
-      $('#' + this.parent_id).find('.progress-amount').css({ width: 0 })
-      source.addEventListener("error", function (e) {
-        $('#' + that.parent_id).find(".video-error").show();
-        that.retryPlayAsync();
-      });
-      source.addEventListener("emptied", function (e) {
-        $('#' + that.parent_id).find('.video-error').show();
-        that.retryPlayAsync();
-      });
-    } else {
-      this.videoObj.play();
-    }
-    this.state = this.STATES.PLAYING;
-  },
-
   pause: function () {
-    try {
-      this.videoObj.pause();
-    } catch (e) {
-    }
-    this.state = this.STATES.PAUSED;
+    this.videoObj.pause();
+    media_player.state = this.STATES.PAUSED;
   },
 
   stop: function () {
-    try {
-      this.videoObj.pause();
-    } catch (e) {
-    }
-    this.state = this.STATES.STOPPED;
+    this.videoObj.pause();
+    media_player.state = this.STATES.STOPPED;
   },
 
   close: function () {
-    try {
+    if (this.videoObj && typeof this.videoObj.pause === 'function') {
       this.videoObj.pause();
-    } catch (e) {
+      $("#vod-series-video-progress").css({ 'width': 0 });
+      this.videoObj.style.display = 'none'; // Hide the video element
+    } else {
+      console.log("Video object is not initialized or does not have a pause method.");
     }
-    this.state = this.STATES.STOPPED;
+    media_player.state = this.STATES.STOPPED;
   },
 
   formatTime: function (seconds) {
@@ -327,6 +355,14 @@ var mediaPlayer = {
     var vid = this.videoObj;
     var totalTrackInfo;
     totalTrackInfo = vid.audioTracks;
+    return totalTrackInfo;
+  },
+
+  getSubtitleOrAudioTrack: function (kind) {
+    var totalTrackInfo;
+    if (kind == 'TEXT') {
+      totalTrackInfo = this.videoObj.textTracks;
+    } else totalTrackInfo = this.videoObj.audioTracks;
     return totalTrackInfo;
   },
 

@@ -52,6 +52,7 @@
 }
 
 #guide-program-time {
+	font-size: 30px;
 	font-weight: normal;
 	display: inline-block;
 	vertical-align: middle;
@@ -93,6 +94,7 @@
 	white-space: nowrap;
 	overflow: hidden;
 	background: rgba(40, 39, 40, 0.81);
+	font-size: 0px;
 	letter-spacing: 0px;
 	word-spacing: 0px;
 	margin-bottom: 3px;
@@ -100,7 +102,7 @@
 
 .guide-time {
 	padding: 10px;
-	color: #ddd;
+	color: #fff;
 	font-weight: bold;
 	text-align: center;
 	position: relative;
@@ -180,6 +182,7 @@
 	height: 50px;
 	letter-spacing: 0px;
 	word-spacing: 0px;
+	font-size: 0px;
 }
 
 .guide-programme-item-wrapper {
@@ -249,6 +252,7 @@
 }
 
 #guide-video-programs-container {
+	color: white;
 	width: 50%;
 	margin: 0 40px !important;
 }

@@ -1,9 +1,9 @@
 .rangeslider,
 .rangeslider__fill {
 	display: block;
-	-moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
-	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: inset 0 1px 3px #2f1547;
+	-webkit-box-shadow: inset 0 1px 3px #2f1547;
+	box-shadow: inset 0 1px 3px #2f1547;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
@@ -74,9 +74,9 @@
 		rgba(0, 0, 0, 0.1)
 	);
 	background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.1));
-	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-	box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 0 8px #2f1547;
+	-webkit-box-shadow: 0 0 8px #2f1547;
+	box-shadow: 0 0 8px #2f1547;
 	-moz-border-radius: 50%;
 	-webkit-border-radius: 50%;
 	border-radius: 50%;

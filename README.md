@@ -1,1 +1,1 @@
-# iptv-smart-live-player-samsung
+webOS TV: Package Application

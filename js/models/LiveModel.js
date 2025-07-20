@@ -1,14 +1,16 @@
 "use strict";
-
 var LiveModel = {
   movies: [],
   category_name: "live_categories",
-  favoriteMovieCount: 200,
-  recentMovieCount: 15,
-  movieKey: "stream_id",
+  favorite_movie_count: 200,
+  recent_movie_count: 15,
+  movie_key: "stream_id",
   categories: [],
   programmes: {},
-  favoriteIds: [],
+  movie_saved: false,
+  programme_saved: false,
+  favorite_ids: [],
+  catchups: [],
 
   getProgrammeVideoUrl: function (channel_id, programme) {
     var start_time = getServerChannelTime(programme.start).format(
@@ -17,8 +19,18 @@ var LiveModel = {
 
     var duration = getMinute(programme.stop) - getMinute(programme.start);
     var url =
-      playlistEndpoint + "streaming/timeshift.php?username=" + userName + "&password=" + password + "&stream=" + channel_id + "&start=" + start_time + "&duration=" + duration;
-
+      api_host_url +
+      "/" +
+      "streaming/timeshift.php?username=" +
+      user_name +
+      "&password=" +
+      password +
+      "&stream=" +
+      channel_id +
+      "&start=" +
+      start_time +
+      "&duration=" +
+      duration;
     return {
       duration: duration,
       url: url
@@ -42,11 +54,10 @@ var LiveModel = {
     var current_program_exist = false;
     var next_programmes = [];
     var current_time = moment(new Date()).unix();
-
     var k = 0;
     for (var i = 0; i < programmes.length; i++) {
       var item = programmes[i];
-      if (timeFormat == 12) {
+      if (time_format == 12) {
         var formatText = "YYYY-MM-DD hh:mm a";
       } else var formatText = "YYYY-MM-DD HH:mm";
 
@@ -57,6 +68,8 @@ var LiveModel = {
         if (start <= current_time) current_program_exist = true;
         next_programmes.push(programmes[i]);
       }
+      // if(k>=4)
+      //     break;
     }
 
     return {

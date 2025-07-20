@@ -1,0 +1,199 @@
+#setting-menus-container {
+	width: 100%;
+}
+
+.setting-mac-address {
+	font-size: 32px;
+	color: #ffffff;
+	text-align: center;
+	margin-top: 45px;
+}
+
+.setting-menu-item-container {
+	width: 25%;
+	display: inline-block;
+	height: 240px;
+	padding: 15px;
+	border-radius: 10px;
+	border: 2px solid transparent;
+	vertical-align: middle;
+}
+
+.setting-menu-item-wrapper {
+	transition: all 0.1s;
+	margin-bottom: 20px;
+	padding: 45px 20px;
+	margin: 10px;
+	border: solid 4px rgba(255, 255, 255, 0.4);
+	border-radius: 10px;
+}
+
+.setting-menu-item-wrapper.active {
+	border-color: yellow;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.setting-menu-item-icon-container {
+	font-size: 50px;
+	color: #fff;
+	text-align: center;
+}
+
+.setting-menu-item-center-text {
+	text-align: center;
+	font-size: 32px;
+	color: #fff;
+	line-height: 1;
+	display: inline-block;
+}
+
+.setting-menu-item-text {
+	text-align: center;
+	font-size: 36px;
+	color: #fff;
+	line-height: 1;
+}
+
+.setting-menu-item-left-text {
+	font-size: 38px;
+	margin-left: 10px;
+	color: #fff;
+	line-height: 2;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.parent-control-modal-button {
+	width: 250px;
+	padding: 10px !important;
+}
+
+.modal-body.p-20 {
+	padding: 20px 30px;
+}
+
+.parent-control-wrapper .setting-menu-item-wrapper {
+	height: 250px;
+}
+
+#setting-page {
+	padding: 40px;
+}
+
+.change-lang-wrapper .setting-menu-item-wrapper {
+	height: 250px;
+}
+
+.setting-title {
+	color: white;
+}
+
+.setting-menu-item-icon-container .parent-control-icon {
+	width: 80px;
+	margin: 60px 0px 15px 0px;
+	filter: brightness(0) invert(1);
+}
+
+.setting-menu-item-icon-container .language-icon {
+	width: 80px;
+	margin: 60px 0px 15px 0px;
+	filter: brightness(0) invert(1);
+}
+
+.setting-menu-item-icon-container .subtitle-icon {
+	width: 70px;
+	margin: 60px 0px 20px 0px;
+	filter: brightness(0) invert(1);
+}
+
+.setting-menu-item-wrapper.subtitle-settings {
+	height: 250px;
+}
+
+.device-key-label,
+.mac-address-label {
+	margin-left: 20px;
+	color: white;
+}
+
+.modal-title-text-2 {
+	font-size: 35px;
+	color: #eee;
+	margin: 5px auto;
+}
+
+.clear-modal-header,
+#clear-history-channels-modal-container {
+	padding: 5px;
+}
+
+.clear-history-channels-modal-option {
+	padding: 9px 20px;
+	border-radius: 5px;
+	background: transparent;
+	color: #fff;
+	border: 2px solid rgba(255, 255, 255, 0.1);
+	margin-bottom: 4px;
+	white-space: nowrap;
+	width: 100%;
+	margin-right: 150px;
+}
+
+.clear-history-channels-modal-option.active {
+	border: 2px solid yellow;
+}
+
+.no-background {
+	background: none !important;
+}
+
+.parent-control-modal-button {
+	width: 250px;
+	padding: 10px !important;
+	border: solid 2px transparent;
+	margin-bottom: 20px;
+}
+
+.contactus-img {
+	width: 270px;
+	height: 270px;
+	border-radius: 4px;
+	margin: 23px 7px 10px 10px;
+	background: white;
+	padding: 10px;
+}
+
+.contactus-mac-address-device-key {
+	font-size: 24px;
+}
+
+.contactus.mac-address-label {
+	color: white;
+}
+
+.whatsapp-number,
+.telelgram-id,
+.support-email,
+.viber-id {
+	color: yellow;
+	font-size: 22px;
+}
+
+.livestream-format-title,
+.livestream-sort-title,
+.live-auto-play-wrapper {
+	font-size: 35px;
+	color: white;
+	padding: 10px 0;
+}
+
+.sort-channels-label {
+	right: 0;
+	position: absolute;
+	bottom: 10px;
+}
+
+#contactus-modal .modal-dialog {
+	min-width: 1200px;
+}

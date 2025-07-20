@@ -1,56 +1,87 @@
 #loading-page {
 	position: relative;
-	background: url(../images/background.jpg);
-	background-size: 100% 100%;
 }
 
-#loading-page .loader-container {
+#loading-page .loader-image-container {
 	position: fixed;
 	z-index: 10;
 	left: 50%;
-	top: 45%;
+	top: 50%;
 	transform: translate(-50%, -50%);
 	transition: 0.5s;
-	width: 580px;
-	height: 400px;
 }
 
-.loader-container.logo {
+.loader-image-container.loading-logo {
 	width: 400px;
 	margin-bottom: -30px;
 }
 
-.loader-container.pre-loader {
+.loader-image-container.loading-gif {
 	width: 25%;
 	margin-bottom: -30px;
 }
 
 #login-container {
 	position: relative;
-	background: url(../images/background.jpg);
 	background-size: 100% 100%;
 	color: #fff;
 }
 
-.login-txt {
+#login-container .left-part-content {
+	position: absolute;
+
+	padding: 100px;
+}
+
+#login-page-note-1 {
+	font-size: 35px;
+	text-align: center;
+}
+
+.login-note-txt-color-2 {
+	color: #fff534;
+	font-size: 36px;
+}
+
+.login-note-txt-color {
+	color: #fff534;
+	font-size: 36px;
+}
+
+.login-note-2-txt {
 	padding: 10px 0;
 }
 
+#login-page-note-2-container {
+	font-size: 40px;
+	text-align: center;
+	width: fit-content;
+	padding: 50px;
+}
+
 .login-button {
-	margin: 0 10px;
+	margin: 0 auto;
 	width: 200px;
-	background-color: #4a73dc;
+	background-color: transparent;
 	color: #fff;
 	font-size: 22px;
 	padding: 10px 0;
 	position: relative;
-	border-radius: 30px;
+	border-radius: 8px;
 	display: inline-block;
-	border: 2px solid #4a73dc;
+	border: 2px solid white;
 }
 
 .login-button.active {
 	border: 2px solid yellow;
+}
+
+#cancel-button {
+	margin-left: 30px;
+}
+
+.login-button .user-icon {
+	margin-right: 50px;
 }
 
 .login-button:focus {
@@ -58,21 +89,52 @@
 	color: yellow;
 }
 
+.login-text-1 {
+	font-size: 25px;
+}
+
+#activate-link {
+	color: #ccc;
+	font-weight: bold;
+	text-decoration: none !important;
+	cursor: pointer;
+	border: 2px solid #524495;
+	border-radius: 60px;
+	padding: 10px;
+	font-size: 25px;
+	width: 500px;
+}
+
 .login-button-wrapper {
-	margin-top: 50px;
+	text-align: center;
 }
-
 .login-page-container {
-	font-size: 36px;
-	padding: 267px 50px;
+	padding-top: 100px;
 }
 
-.mac-address-devicekey {
+.loading-mac-devicekey {
 	padding: 30px;
-	text-align: left;
+	font-size: 30px;
+	color: white;
 }
 
-.mac-address,
-.device-key {
-	color: yellow;
+#loading-page .loader-container {
+	position: fixed;
+	z-index: 10;
+	left: 55%;
+	top: 40%;
+	transform: translate(-50%, -50%);
+	transition: 0.5s;
+	width: 580px;
+	height: 400px;
+}
+
+.loader-container .pre-loader {
+	width: 15%;
+	margin-left: 140px;
+	margin-top: 30px;
+}
+
+.loader-container .logo {
+	width: 360px;
 }

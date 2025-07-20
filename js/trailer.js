@@ -1,26 +1,25 @@
 "use strict";
-var trailer = {
+var trailer_page = {
   player: null,
   done: false,
-  backUrl: "home-page",
-  isPaused: false,
-
+  back_url: "home-page",
+  is_paused: false,
   init: function (url, prev_route, type) {
     showLoader(true);
-    this.backUrl = prev_route;
-    $(".top-bar").addClass("hide");
+    this.back_url = prev_route;
+    hideTopBar();
     if (type == "movies") $("#vod-summary-page").addClass("hide");
     else $("#series-summary-page").addClass("hide");
 
     $("#trailer-player-page").show();
-    currentRoute = "trailer-page";
-    trailer.player = new YT.Player("trailer-player", {
+    current_route = "trailer-page";
+    trailer_page.player = new YT.Player("trailer-player", {
       height: "100%",
       width: "100%",
       videoId: url,
       events: {
-        onReady: trailer.onPlayerReady,
-        onStateChange: trailer.onPlayerStateChange
+        onReady: trailer_page.onPlayerReady,
+        onStateChange: trailer_page.onPlayerStateChange
       }
     });
     $("#trailer-player").on("load", function () {
@@ -29,55 +28,50 @@ var trailer = {
       $(head).append(css);
     });
   },
-
   goBack: function () {
     showLoader(false);
-    currentRoute = this.backUrl;
+    current_route = this.back_url;
     this.player.stopVideo();
     $("#trailer-player-page").hide();
     $("#trailer-player").remove();
     $("#trailer-player-page").html('<div id="trailer-player"></div>');
-    if (this.backUrl === "vod-summary-page") {
-      $(".top-bar").addClass("hide");
+    if (this.back_url === "vod-summary-page") {
+      hideTopBar();
       $("#vod-summary-page").removeClass("hide");
     }
 
-    if (this.backUrl === "series-summary-page")
+    if (this.back_url === "series-summary-page")
       $("#series-summary-page").removeClass("hide");
   },
-
   onPlayerReady: function (event) {
     showLoader(false);
     event.target.playVideo();
     $(".ytp-chrome-top-buttons").hide();
   },
-
   onPlayerStateChange: function (event) { },
-
   seekTo: function (step) {
-    var currentTime = this.player.getCurrentTime();
-    var newTime = currentTime + step;
+    var current_time = this.player.getCurrentTime();
+    var new_time = current_time + step;
     var duration = this.player.getDuration();
-    if (newTime < 0) newTime = 0;
-    if (newTime > duration) newTime = duration;
-    this.player.seekTo(newTime);
+    if (new_time < 0) new_time = 0;
+    if (new_time > duration) new_time = duration;
+    this.player.seekTo(new_time);
   },
-
   HandleKey: function (e) {
     switch (e.keyCode) {
-      case tvKey.ArrowRight:
+      case tvKey.RETURN:
+        this.goBack();
+        break;
+      case tvKey.RIGHT:
         this.seekTo(5);
         break;
-      case tvKey.ArrowLeft:
+      case tvKey.LEFT:
         this.seekTo(-5);
         break;
-      case tvKey.Enter:
-        if (this.isPaused) this.player.playVideo();
+      case tvKey.ENTER:
+        if (this.is_paused) this.player.playVideo();
         else this.player.pauseVideo();
-        this.isPaused = !this.isPaused;
-        break;
-      case tvKey.Back:
-        this.goBack();
+        this.is_paused = !this.is_paused;
         break;
     }
   }

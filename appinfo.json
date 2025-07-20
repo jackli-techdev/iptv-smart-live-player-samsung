@@ -1,0 +1,12 @@
+{
+	"id": "com.xciptvsmartplayer.app",
+	"vendor": "XCIPTV Smart Player",
+	"largeIcon": "logo.png",
+	"icon": "logo.png",
+	"main": "index.html",
+	"title": "XCIPTV Smart Player",
+	"type": "web",
+	"resolution": "1920x1080",
+	"version": "1.0.0",
+	"disableBackHistoryAPI": true
+}

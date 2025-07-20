@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://yourdomain/IPTVSmartLivePlayer" version="1.0.1" viewmodes="maximized">
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets"
+    id="http://yourdomain/xciptvsmartplayer" version="1.0.0" viewmodes="maximized">
     <access origin="*" subdomains="true"></access>
-    <tizen:application id="AKN9cwKmri.IPTVSmartLivePlayer" package="AKN9cwKmri" required_version="2.3"/>
-    <content src="index.html"/>
-    <feature name="http://tizen.org/feature/screen.size.normal.1080.1920"/>
-    <icon src="logo.png"/>
-    <tizen:metadata key="http://samsung.com/tv/metadata/use.voiceguide" value="false"/>
-    <name>IPTV Smart Live Player</name>
-    <tizen:privilege name="http://developer.samsung.com/privilege/network.public"/>
-    <tizen:privilege name="http://tizen.org/privilege/internet"/>
-    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
-    <tizen:privilege name="http://developer.samsung.com/privilege/widgetdata"/>
-    <tizen:privilege name="http://tizen.org/privilege/system"/>
-    <tizen:privilege name="http://tizen.org/feature/network.ethernet"/>
-    <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
-    <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
-    <tizen:profile name="tv-samsung"/>
-    <tizen:setting screen-orientation="auto-rotation" context-menu="enable" background-support="disable" encryption="enable" install-location="auto" hwkey-event="enable"/>
+    <tizen:application id="xFDo5lUXus.XCIPTVSmartPlayer" package="xFDo5lUXus" required_version="2.3" />
+    <content src="index.html" />
+    <feature name="http://tizen.org/feature/screen.size.normal.1080.1920" />
+    <icon src="logo.png" />
+    <tizen:metadata key="http://samsung.com/tv/metadata/use.voiceguide" value="false" />
+    <name>XCIPTV Smart Player</name>
+    <tizen:privilege name="http://developer.samsung.com/privilege/network.public" />
+    <tizen:privilege name="http://tizen.org/privilege/internet" />
+    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice" />
+    <tizen:privilege name="http://developer.samsung.com/privilege/widgetdata" />
+    <tizen:privilege name="http://tizen.org/privilege/system" />
+    <tizen:privilege name="http://tizen.org/feature/network.ethernet" />
+    <tizen:privilege name="http://tizen.org/privilege/filesystem.read" />
+    <tizen:privilege name="http://tizen.org/privilege/filesystem.write" />
+    <tizen:privilege name="http://tizen.org/privilege/account.read" />
+    <tizen:privilege name="http://tizen.org/privilege/system" />
+    <tizen:profile name="tv-samsung" />
+    <tizen:setting screen-orientation="auto-rotation" context-menu="enable"
+        background-support="disable" encryption="enable" install-location="auto"
+        hwkey-event="enable" />
 </widget>

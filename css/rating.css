@@ -1,10 +1,14 @@
 .vod-series-rating-container {
 	margin: 10px auto;
+	text-align: center;
+	font-size: 30px;
+	color: white;
 }
 
 .rating-mark {
-	margin-left: 10px;
+	margin: 8px;
 	color: #fff;
+	font-size: 30px;
 	font-weight: bold;
 }
 
@@ -12,26 +16,71 @@
 	display: inline-block;
 	unicode-bidi: bidi-override;
 	color: #888888;
-	font-size: 35px;
-	height: 35px;
+	font-size: 44px;
+	height: 40px;
 	width: auto;
-	margin: 0;
+	margin: 0 0 0 0;
 	position: relative;
 	padding: 0;
 }
 
-.rating-upper {
-	padding: 0;
-	overflow: hidden;
-	margin-top: -20px;
-}
-
-.rating-mark {
+.episode-rating {
 	display: inline-block;
+	unicode-bidi: bidi-override;
+	color: #ffffff;
+	font-size: 26px;
+	height: 30px;
+	width: auto;
+	margin: 0;
+	position: absolute;
+	left: 28px;
+	top: 40px;
+	padding: 0;
+	margin-top: 10px;
 }
 
-.rating-star {
-	width: 26px;
-	height: 26px;
-	margin-top: 20px;
+.series-genre-text-year {
+	text-align: left;
+}
+
+.series-genre-text-content {
+	text-align: left;
+}
+
+.episode-duration {
+	text-align: right !important;
+	background: rgba(255, 255, 255, 0.3);
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	padding: 0 6px;
+}
+.rating-upper {
+	color: #ffff00;
+	padding: 0;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	width: 0%;
+}
+.episode-rating-upper {
+	color: #ffff00;
+	padding: 0;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	width: 0%;
+}
+
+.episode-rating-mark {
+	margin-left: 10px;
+	color: #fff;
+	font-size: 20px;
+	font-weight: bold;
 }
