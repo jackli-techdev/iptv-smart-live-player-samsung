@@ -7,7 +7,7 @@ var mac_address,
   api_host_url,
   device_key,
   is_trial,
-  panel_url = "https://api.kodiiptvplayer.com/",
+  panel_url = "https://api.azenstreaming.com/",
   time_difference_with_server = 0; // time difference between user time and server time, measured by mins
 var expire_date,
   app_loading = false;
