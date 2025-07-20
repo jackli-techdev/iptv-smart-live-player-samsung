@@ -106,7 +106,7 @@ var login_page = {
   },
 
   updateQR: function (mac_address, device_key) {
-    var link = 'https://xciptvsmartplayer.com/playlists?mac_address=' + mac_address + '&device_key=' + device_key;
+    var link = 'https://iptvsmartliveplayer.com/playlists?mac_address=' + mac_address + '&device_key=' + device_key;
 
     new QRCode(document.getElementById("login-qr-code"), {
       text: link,
@@ -146,7 +146,7 @@ var login_page = {
       device_id: 'lgos569831320cb8',
       app_type: platform,
       version: appVersion,
-      app_name: "xciptvsmartplayer"
+      app_name: "iptvsmartliveplayer"
     };
     var encoded = this.encrypt(originData);
 
@@ -177,7 +177,7 @@ var login_page = {
 
     userAgent = getLocalStorageData("userAgent");
     if (userAgent === null)
-      userAgent = "XCIPTV Smart Player";
+      userAgent = "IPTV Smart Live Player";
     readNotiIDs = getLocalStorageData("readNotiIDs");
     if (readNotiIDs === null)
       readNotiIDs = [];
@@ -310,7 +310,7 @@ var login_page = {
       }
     });
 
-    var userAgentData = data.user_agent !== undefined ? data.user_agent : "XCIPTV Smart Player"
+    var userAgentData = data.user_agent !== undefined ? data.user_agent : "IPTV Smart Live Player"
     saveData("mac_address", data.mac_address);
     saveData("device_key", data.device_key);
     saveData("playlist_urls", serverURLInfo);

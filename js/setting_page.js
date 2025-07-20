@@ -1145,7 +1145,7 @@ var setting_page = {
   showUserAgentModal: function () {
     var tempUserAgent = getLocalStorageData('userAgent');
     if (tempUserAgent === null)
-      tempUserAgent = "XCIPTV Smart Player";
+      tempUserAgent = "IPTV Smart Live Player";
     $("#useragent-confirm").val(tempUserAgent)
     $("#useragent-modal").modal("show");
     this.keys.focused_part = "useragent_modal";

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets"
-    id="http://yourdomain/xciptvsmartplayer" version="1.0.0" viewmodes="maximized">
+    id="http://yourdomain/iptvsmartliveplayer" version="1.0.0" viewmodes="maximized">
     <access origin="*" subdomains="true"></access>
-    <tizen:application id="xFDo5lUXus.XCIPTVSmartPlayer" package="xFDo5lUXus" required_version="2.3" />
+    <tizen:application id="yFDo5lUXua.IPTVSmartLivePlayer" package="yFDo5lUXua" required_version="2.3" />
     <content src="index.html" />
     <feature name="http://tizen.org/feature/screen.size.normal.1080.1920" />
     <icon src="logo.png" />
     <tizen:metadata key="http://samsung.com/tv/metadata/use.voiceguide" value="false" />
-    <name>XCIPTV Smart Player</name>
+    <name>IPTV Smart Live Player</name>
     <tizen:privilege name="http://developer.samsung.com/privilege/network.public" />
     <tizen:privilege name="http://tizen.org/privilege/internet" />
     <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice" />

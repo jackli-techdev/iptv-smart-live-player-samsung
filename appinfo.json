@@ -1,10 +1,10 @@
 {
-	"id": "com.xciptvsmartplayer.app",
-	"vendor": "XCIPTV Smart Player",
+	"id": "com.iptvsmartliveplayer.app",
+	"vendor": "IPTV Smart Live Player",
 	"largeIcon": "logo.png",
 	"icon": "logo.png",
 	"main": "index.html",
-	"title": "XCIPTV Smart Player",
+	"title": "IPTV Smart Live Player",
 	"type": "web",
 	"resolution": "1920x1080",
 	"version": "1.0.0",
